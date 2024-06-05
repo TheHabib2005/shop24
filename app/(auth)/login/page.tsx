@@ -1,70 +1,52 @@
-"use client";
-import { signupFormValidateSchema } from "@/helpers/yup-Schema";
-import { delay } from "@/utils";
-import { useFormik } from "formik";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from "jwt-decode";
-
+"use client"
+import { signinFormValidateSchema } from '@/helpers/yup-Schema'
+import { delay } from '@/utils'
+import axios from 'axios'
+import { useFormik } from 'formik'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+import toast from 'react-hot-toast'
 interface UserDataTypes {
-    username: string;
-    email: string;
-    password: string;
+    email: string; password: string
 }
-const Signup = () => {
+const SignIn = () => {
 
 
 
 
+    const { handleSubmit, handleChange, handleBlur, errors, touched, values } = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
 
+        } as UserDataTypes,
+        validationSchema: signinFormValidateSchema,
+        onSubmit: values => {
+            console.log(values)
 
-    const { handleSubmit, handleChange, handleBlur, errors, touched, values } =
-        useFormik({
-            initialValues: {
-                username: "",
-                email: "",
-                password: "",
-            } as UserDataTypes,
-            validationSchema: signupFormValidateSchema,
-            onSubmit: (values) => {
-                console.log(values);
-                // if (navigator.onLine) {
-                //     handleSignup(values);
-                // } else {
-                //     toast.error("please conncet to the  internet ");
-                // }
-            },
-        });
-
-
-
-
-
-
-
-
-
+        }
+    });
 
 
 
     return (
+
+
+
         <main className="min-h-screen  text-gray-900 flex justify-center items-center">
 
             <div className="sm:rounded-lg flex justify-center flex-1">
                 <div className=" p-6 sm:p-12">
-                    <div className="flex items-center justify-center">
-                        <h1 className="font-semibold text-3xl">SHOP-24 BD</h1>
+                    <div className='flex items-center justify-center'>
+                        <h1 className='font-semibold text-3xl'>SHOP-24 BD</h1>
+
                     </div>
                     <div className="mt-12 flex flex-col items-center">
-                        <h1 className="text-2xl xl:text-3xl font-bold">Sign up</h1>
+                        <h1 className="text-2xl xl:text-3xl font-bold">Sign In</h1>
                         <div className="w-full flex-1 mt-8">
                             <div className="flex flex-col items-center">
-                                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline" onClick={() => {
-
-                                }} >
+                                <button className="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-indigo-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
                                     <div className="bg-white p-2 rounded-full">
                                         <svg className="w-4" viewBox="0 0 533.5 544.3">
                                             <path
@@ -95,37 +77,22 @@ const Signup = () => {
                                 </div>
                             </div>
                             <form className="mx-auto max-w-xs" onSubmit={handleSubmit}>
-                                <div>
-                                    <input
-                                        className="w-full px-8 py-4 rounded-lg font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
-                                        type="text"
-                                        name="username"
-                                        placeholder="Username"
-                                        value={values.username}
-                                        onChange={handleChange}
-                                        onBlur={handleBlur}
-                                    />
-                                    {errors.username && touched.username && (
-                                        <p className="text-red-500 text-md font-semibold mt-2 capitalize">
-                                            {errors.username}
-                                        </p>
-                                    )}
-                                </div>
+
                                 <div>
                                     <input
                                         className="w-full px-8 py-4 rounded-lg mt-5 font-medium bg-gray-100 border border-gray-200 placeholder-gray-500 text-sm focus:outline-none focus:border-gray-400 focus:bg-white"
                                         type="email"
-                                        name="email"
+                                        name='email'
                                         placeholder="Email"
                                         value={values.email}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                     />
-                                    {errors.email && touched.email && (
-                                        <p className="text-red-500 text-md font-semibold mt-2 capitalize">
-                                            {errors.email}
-                                        </p>
-                                    )}
+                                    {
+                                        errors.email && touched.email && (
+                                            <p className="text-red-500 text-md font-semibold mt-2 capitalize">{errors.email}</p>
+                                        )
+                                    }
                                 </div>
                                 <div>
                                     <input
@@ -135,27 +102,20 @@ const Signup = () => {
                                         value={values.password}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
-                                        name="password"
+                                        name='password'
                                     />
-                                    {errors.password && touched.password && (
-                                        <p className="text-red-500 text-md font-semibold mt-2 capitalize">
-                                            {errors.password}
-                                        </p>
-                                    )}
+                                    {
+                                        errors.password && touched.password && (
+                                            <p className="text-red-500 text-md font-semibold mt-2 capitalize">{errors.password}</p>
+                                        )
+                                    }
                                 </div>
 
-                                <button
-                                    className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none disabled:bg-gray-500"
-                                    disabled={
-                                        errors.username
-                                            ? true
-                                            : false || errors.password
-                                                ? true
-                                                : false || errors.email
-                                                    ? true
-                                                    : false
-                                    }
-                                >
+                                <div className='mt-3  '>
+                                    <Link href={""} className='text-gray-700'>Reset Password</Link>
+                                </div>
+
+                                <button className="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none disabled:bg-gray-500" disabled={errors.password ? true : false || errors.email ? true : false}>
                                     <svg
                                         className="w-6 h-6 -ml-2"
                                         fill="none"
@@ -168,37 +128,29 @@ const Signup = () => {
                                         <circle cx="8.5" cy={7} r={4} />
                                         <path d="M20 8v6M23 11h-6" />
                                     </svg>
-                                    <span className="ml-3">Sign Up</span>
+                                    <span className="ml-3">Sign In</span>
                                 </button>
                                 <p className="mt-6 text-xs text-gray-600 text-center">
                                     I agree to abide by templatana &apos; s
-                                    <a
-                                        href="#"
-                                        className="border-b border-gray-500 border-dotted"
-                                    >
+                                    <a href="#" className="border-b border-gray-500 border-dotted">
                                         Terms of Service
                                     </a>
                                     and its
-                                    <a
-                                        href="#"
-                                        className="border-b border-gray-500 border-dotted"
-                                    >
+                                    <a href="#" className="border-b border-gray-500 border-dotted">
                                         Privacy Policy
                                     </a>
                                 </p>
-                                <p className="mt-6 text-lg text-gray-600 text-center">
-                                    Already have a account{" "}
-                                    <Link className="text-blue-600" href={"/login"}>
-                                        Login
-                                    </Link>
-                                </p>
+                                <p className='mt-6 text-lg text-gray-600 text-center'>You have a No account <Link className='text-blue-600' href={"/signup"}>SignUp</Link></p>
                             </form>
                         </div>
                     </div>
                 </div>
+
             </div>
         </main>
-    );
-};
 
-export default Signup;
+
+    )
+}
+
+export default SignIn
