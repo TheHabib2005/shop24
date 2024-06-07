@@ -2,8 +2,6 @@ import BreadGrum from '@/components/BreadGrum'
 import React from 'react'
 import { MdOutlineStar } from "react-icons/md";
 import { MdOutlineDiscount } from "react-icons/md";
-import { FiPlus } from "react-icons/fi";
-import { HiMiniMinus } from "react-icons/hi2";
 import { GrCart } from "react-icons/gr";
 import { FaRegHeart } from "react-icons/fa6";
 import { MdOutlineShare } from "react-icons/md";
@@ -89,19 +87,73 @@ const page = ({ params }: { params: any }) => {
             <div>
                 <div className=' p-5 w-full flex  gap-4'>
 
-                    <div className='w-1/2 flex items-start gap-5'>
-                        <div className='w-[100px]'><img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/avatar-1.png" alt="" className='w-[50px] object-contain' /></div>
-                        <div className='flex flex-col gap-3 text-white'>
-                            <div className='text-yellow-500 flex items-center text-xl'>
-                                <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar />
+                    <div className='w-1/2'>
+                        <div className=' flex items-start gap-5 mt-5'>
+                            <div className='w-[100px]'><img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/avatar-1.png" alt="" className='w-[50px] object-contain' /></div>
+                            <div className='flex flex-col gap-3 text-white'>
+                                <div className='text-yellow-500 flex items-center text-xl'>
+                                    <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar />
+                                </div>
+                                <p>You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.</p>
+                                <b>Kristin Watson</b>
+                                <span className='text-gray-400'>March 14, 2021</span>
                             </div>
-                            <p>You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.</p>
-                            <b>Kristin Watson</b>
-                            <span className='text-gray-400'>March 14, 2021</span>
+                        </div>
+                        {/*  */}
+                        <div className=' flex items-start gap-5 mt-5'>
+                            <div className='w-[100px]'><img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/avatar-1.png" alt="" className='w-[50px] object-contain' /></div>
+                            <div className='flex flex-col gap-3 text-white'>
+                                <div className='text-yellow-500 flex items-center text-xl'>
+                                    <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar />
+                                </div>
+                                <p>You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.</p>
+                                <b>Kristin Watson</b>
+                                <span className='text-gray-400'>March 14, 2021</span>
+                            </div>
+                        </div>
+                        {/*  */}
+                        <div className=' flex items-start gap-5 mt-5'>
+                            <div className='w-[100px]'><img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/avatar-1.png" alt="" className='w-[50px] object-contain' /></div>
+                            <div className='flex flex-col gap-3 text-white'>
+                                <div className='text-yellow-500 flex items-center text-xl'>
+                                    <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar />
+                                </div>
+                                <p>You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the changes.</p>
+                                <b>Kristin Watson</b>
+                                <span className='text-gray-400'>March 14, 2021</span>
+                            </div>
                         </div>
                     </div>
-                    <div className='w-1/2 bg-teal-300'>
-                        Write your review
+                    {/*  */}
+                    <div className='w-1/2 px-4 '>
+                        <div>
+                            <h3 className='text-zinc-700 dark:text-white font-semibold text-xl'>Write your review</h3>
+                            <p className='text-zinc-300 text-lg'>Your email address will not be published. Required fields are marked*</p>
+                        </div>
+
+
+                        <form className='flex flex-col gap-y-4 mt-10 w-full'>
+
+                            <div className='w-full'>
+                                <label htmlFor="email" className='text-zinc-700 dark:text-white text-lg mb-3 inline-flex font-semibold'>Email *</label>
+                                <input type="text" name='email' id='email' className='p-3 w-full outline-none  rounded-md' placeholder='Example@gmail.com' />
+                            </div>
+                            <div className='w-full mt-3'>
+                                <label htmlFor="email" className='text-zinc-700 dark:text-white text-lg mb-3 inline-flex font-semibold'>Your Review *</label>
+
+                                <textarea name='email' id='email' className='p-3 w-full h-[150px] outline-none  rounded-md' placeholder='This is Nice Product!' ></textarea>
+                            </div>
+                            <select name="rating-star" id="rating-star" className='p-3 rounded-md cursor-pointer outline-none'>
+                                <option value="5">5 Star</option>
+                                <option value="4">4 Star</option>
+                                <option value="3">3 Star</option>
+                                <option value="2">2 Star</option>
+                                <option value="1">1 Star</option>
+                            </select>
+
+                            <button className='w-full bg-blue-600 cursor-pointer text-white textlg- font-semibold p-3 rounded-md mt-3 '>Send Review</button>
+
+                        </form>
                     </div>
 
 

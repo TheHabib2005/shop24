@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import React from 'react'
+import SearchBar from './SearchBar'
 
 const Header = () => {
     return (
@@ -30,7 +31,7 @@ const Header = () => {
                     </div>
 
                 </div>
-
+                {/* <SearchBar /> */}
                 <div className=' md:w-1/3 flex-1 flex items-center gap-x-6 justify-end'>
                     <Link href={""} className='w-12 h-12 bg-gray-100 flex items-center justify-center rounded-full dark:bg-zinc-900 dark:text-white' >
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-7">
