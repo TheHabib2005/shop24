@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 import SearchBar from './SearchBar'
+import AutoCompleteBar from './AutoCompleteBar'
 
 const Header = () => {
     return (
@@ -22,15 +23,7 @@ const Header = () => {
 
                     </div>
                 </div>
-                <div className='w-1/3 relative md:block hidden'>
-                    <input type="text" className=' placeholder:text-zinc-400 font-semibold placeholder::text-sm focus:outline-none w-full py-[10px] px-4 rounded-lg border  text-zinc-600 dark:bg-zinc-900 dark:border-zinc-900 dark:text-zinc-300' placeholder='Search for Products...' />
-                    <div className=' w-10 h-10 absolute right-0 rounded-full flex items-center justify-center text-zinc-600 dark:text-zinc-500  top-[8%] '>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                    </div>
-
-                </div>
+                <AutoCompleteBar responsiveMode={false} />
                 {/* <SearchBar /> */}
                 <div className=' md:w-1/3 flex-1 flex items-center gap-x-6 justify-end'>
                     <Link href={""} className='w-12 h-12 bg-gray-100 flex items-center justify-center rounded-full dark:bg-zinc-900 dark:text-white' >
@@ -59,14 +52,7 @@ const Header = () => {
 
 
 
-            <div className='w-full relative md:hidden block mt-5'><input type="text" className=' placeholder:text-zinc-400 placeholder::text-sm focus:outline-none w-full py-[12px] px-4 rounded-lg border  text-zinc-600 dark:bg-zinc-900 dark:border-zinc-900 dark:text-white' placeholder='Search for Products...' />
-                <div className=' w-10 h-10 absolute right-0 rounded-full flex items-center justify-center text-zinc-600 top-[10%] '>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                    </svg>
-                </div>
-
-            </div>
+            <AutoCompleteBar responsiveMode={true} />
         </header>
     )
 }

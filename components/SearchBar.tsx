@@ -1,13 +1,14 @@
 "use client";
 import useDebounce from "@/hooks/useDebounce";
 import { useRecentSearch } from "@/zustant-store/useRecentSearch";
-import { useRouter } from "next/navigation";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 import { ClipLoader } from "react-spinners";
-import { Reference } from "yup";
+
 
 const SearchBar = () => {
-    const { searchItems, addRecentSearch, deleteRecentSearch } = useRecentSearch();
+    const { searchItems, addRecentSearch, deleteRecentSearch } =
+        useRecentSearch();
 
     const [inputValue, setInputValue] = useState("");
     const [isLoading, setIsLoading] = useState(false);
@@ -20,27 +21,22 @@ const SearchBar = () => {
     const [showSuggestion, setSuggestions] = useState(false);
     const [showRecentSearch, setRecentSearch] = useState(false);
 
-    const [recentSearchData, setRecentSearchData] = useState<any>([]);
     const handleInput = (e: any) => {
-        setReFetch(true)
+        setReFetch(true);
         setInputValue(e.target.value);
         if (e.target.value === "") {
             setUsers([]);
             setSuggestions(false);
-            setRecentSearch(true);
+
         } else {
             setRecentSearch(false);
+            setSuggestions(true);
         }
     };
     const router = useRouter();
-
-    // useEffect(() => {
-    //     if (inputValue === "") {
-    //         setUsers([])
-    //         setSuggestions(false)
-    //         setRecentSearch(true)
-    //     }
-    // }, [inputValue])
+    const searchParams = useSearchParams();
+    const params = new URLSearchParams(searchParams);
+    const path = usePathname();
 
     const onSelectItem = (item: string) => {
         console.log(item);
@@ -52,6 +48,8 @@ const SearchBar = () => {
             createdAt: new Date().getTime(),
             value: item,
         });
+        params.set("q", item);
+        router.replace(`${path}?${params}`);
     };
 
     searchItems.sort((a: any, b: any) => b.createdAt - a.createdAt);
@@ -64,9 +62,11 @@ const SearchBar = () => {
                 `https://jsonplaceholder.typicode.com/users?q=${inputValue}`
             );
             let result = await response.json();
+            console.log(result);
+
             setUsers(result);
             setIsLoading(false);
-            setSuggestions(true);
+            // setSuggestions(true);
         } catch (error) {
             console.log(error);
         }
@@ -79,6 +79,10 @@ const SearchBar = () => {
     }, [debounceValue]);
 
     useEffect(() => {
+        fetchUsers();
+    }, []);
+
+    useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
                 containerRef.current &&
@@ -86,7 +90,7 @@ const SearchBar = () => {
                 inputRef.current !== event.target
             ) {
                 setSuggestions(false);
-                setRecentSearch(false)
+                setRecentSearch(false);
             }
         };
 
@@ -101,8 +105,9 @@ const SearchBar = () => {
                     type="text"
                     ref={inputRef}
                     onClick={() => {
-                        inputValue.length > 0 ?
-                            (setSuggestions(true), setReFetch(true), fetchUsers()) : (setRecentSearch(true))
+                        inputValue.length > 0
+                            ? (setSuggestions(true), setReFetch(true), fetchUsers())
+                            : setRecentSearch(true);
                     }}
                     onKeyDown={(e) => {
                         console.log(users.length);
@@ -134,17 +139,22 @@ const SearchBar = () => {
                     className="mt-5 h-[600px] overflow-y-scroll bg-zinc-800 p-3"
                     ref={containerRef}
                 >
-                    {users.map((user, i) => {
+                    {users.filter(doc =>
+                        doc.username.toLowerCase().includes(inputValue.toLowerCase()) ||
+                        doc.email.toLowerCase().includes(inputValue.toLowerCase() ||
+                            doc.name.toLowerCase().includes(inputValue.toLowerCase())
+                        )
+                    ).map((user, i) => {
                         return (
                             <div
                                 key={user.id}
                                 className={`
-                                  p-3 mb-3 bg-gray-100 rounded-md dark:bg-gray-800  cursor-pointer ${index == i ? "text-blue-800" : "text-white"
+                                  p-3  cursor-pointer bg-zinc-900 rounded-md mb-2 ${index == i ? "text-blue-600" : "text-white"
                                     }`}
                                 onClick={() => onSelectItem(user.username)}
                             >
                                 <h3 className="text-lg font-semibold">{user.username}</h3>
-                                <p className="text-sm">{user.email}</p>
+
                             </div>
                         );
                     })}
@@ -159,31 +169,7 @@ const SearchBar = () => {
                 </div>
             )}
 
-            {showRecentSearch && searchItems.length > 0 && (
-                <div className="p-3 mt-3 bg-zinc-800" ref={containerRef}>
-                    {searchItems.map((item: any) => {
-                        return (
-                            <div key={item.createdAt} className="text-white p-3  flex items-center justify-between cursor-pointer bg-zinc-900 rounded-md mb-2"
 
-                            >
-                                <span onClick={(e) => {
-
-                                    setRecentSearch(false)
-                                    onSelectItem(item.value)
-                                }} className="w-full flex flex-1 min-h-full"> {item.value}</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6 text-white cursor-pointer" onClick={() => {
-                                    deleteRecentSearch(item.createdAt)
-                                    setRecentSearch(true)
-
-                                }}>
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-                                </svg>
-
-                            </div>
-                        );
-                    })}
-                </div>
-            )}
         </>
     );
 };
