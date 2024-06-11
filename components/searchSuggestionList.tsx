@@ -6,7 +6,7 @@ interface Iprops {
     list: Product[];
     containerRef: React.RefObject<HTMLDivElement>
     inputValue: string;
-    handleSelectSuggestion: () => void
+    handleSelectSuggestion: (item: string) => void
 }
 const SearchSuggestionList: FC<Iprops> = ({ list, containerRef, inputValue, handleSelectSuggestion }) => {
 
@@ -30,7 +30,7 @@ const SearchSuggestionList: FC<Iprops> = ({ list, containerRef, inputValue, hand
         <div className="absolute w-full  bg-[#212121] z-10 top-[100%] left-0 mt-2 py-2 rounded-lg" ref={containerRef}>
             {
                 list.slice(0, 10).map((item, index) => {
-                    return <div className="flex items-center mt-2 gap-2 hover:bg-[#2b2b2b] transition-all duration-100 ease-linear p-2 cursor-pointer" key={item.id} onClick={() => handleSelectSuggestion(item.title)}>
+                    return <div className="flex items-center mt-2 gap-2 hover:bg-[#2b2b2b] transition-all duration-100 ease-linear p-2 cursor-pointer" key={item.id + Math.random() * 100} onClick={() => handleSelectSuggestion(item.title)}>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"

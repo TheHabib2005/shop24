@@ -10,32 +10,24 @@ interface Iprops {
     responsiveMode: boolean;
 }
 const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
-
     const [inputValue, setInputValue] = useState("");
 
     const [openSearchSuggestionPopup, setOpenSearchSuggestionPopup] =
         useState(false);
-    // const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const debounceValue = useDebounce(inputValue);
 
     const [searchResult, setSearchResult] = useState<Product[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
+
+
     const inputRef = useRef<HTMLInputElement>(null);
     const [isReFetching, setIsReFetching] = useState(true);
-
-
-
-
-
-
-
-
-
 
     // handle input change
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setIsReFetching(true)
+        setIsReFetching(true);
         let value = e.target.value;
         setInputValue(value);
         if (value.length > 0) {
@@ -57,51 +49,47 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
     };
 
     const handleSelectSuggestion = (item: string) => {
-        // setIsReFetching(false);
+        setIsReFetching(false);
         setInputValue(item);
-        setOpenSearchSuggestionPopup(false)
-
-    }
-
+        setOpenSearchSuggestionPopup(false);
+    };
 
     const fetchUsers = async (query: string) => {
         try {
-            // setIsLoading(true);
+            setIsLoading(true);
             let response = await fetch(
-                `https://dummyjson.com/products/search?q=${query}`
+                `https://dummyjson.com/products/search?q=${query}`,
+                {
+                    cache: "force-cache"
+                }
             );
             let result = await response.json();
-            return result.products
+            // return result.products;
 
-            // setSearchResult(result.products);
-            // setIsLoading(false);
-            // setSuggestions(true);
+            setSearchResult(result.products);
+            setIsLoading(false);
+            setSuggestions(true);
         } catch (error) {
-            // setIsLoading(false);
+            setIsLoading(false);
             console.log(error);
         }
     };
 
-
-    const { data: suggestions = [], isLoading, isError } = useQuery<Product[], Error>({
-        queryKey: ['fetch-suggestions', debounceValue],
-        queryFn: () => fetchUsers(debounceValue),
-
-        enabled: debounceValue.length > 2 && isReFetching,
-        staleTime: 5 * 60 * 1000, // 5 minutes
-        cacheTime: 10 * 60 * 1000,
-    });
-
-
+    // const {
+    //     data: suggestions = [],
+    //     isLoading,
+    //     isError,
+    // } = useQuery<Product[], Error>({
+    //     queryKey: ["fetch-suggestions", debounceValue],
+    //     queryFn: () => fetchUsers(debounceValue),
+    //     enabled: debounceValue.length > 0 && isReFetching,
+    // });
 
     useEffect(() => {
-        if (suggestions) {
-            setSearchResult(suggestions)
+        if (debounceValue.length > 0 && isReFetching) {
+            fetchUsers(debounceValue)
         }
-    }, [suggestions]);
-
-
-
+    }, [debounceValue]);
 
 
     useEffect(() => {
@@ -118,10 +106,6 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         window.addEventListener("click", handleClickOutside);
         return () => window.removeEventListener("click", handleClickOutside);
     }, []);
-
-
-
-
 
     return (
         <div
@@ -184,7 +168,12 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                 )}
             </div>
             {openSearchSuggestionPopup && searchResult.length > 0 && (
-                <SearchSuggestionList handleSelectSuggestion={handleSelectSuggestion} inputValue={inputValue} containerRef={containerRef} list={searchResult} />
+                <SearchSuggestionList
+                    handleSelectSuggestion={handleSelectSuggestion}
+                    inputValue={inputValue}
+                    containerRef={containerRef}
+                    list={searchResult}
+                />
             )}
 
             {/* <RecentSearchSuggestionList /> */}
