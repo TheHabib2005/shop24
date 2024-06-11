@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Header from "@/components/Header";
+import TranstackQueryProvider from "@/components/TranstackQueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,10 +19,12 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className + ' dark:bg-zinc-950'}>
-                <main className="max-w-[1440px] mx-auto px-6 w-[100%]">
-                    <Header />
-                    {children}
-                </main>
+                <TranstackQueryProvider>
+                    <main className="max-w-[1440px] mx-auto px-6 w-[100%]">
+                        <Header />
+                        {children}
+                    </main>
+                </TranstackQueryProvider>
 
             </body>
         </html>

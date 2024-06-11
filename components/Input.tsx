@@ -20,7 +20,6 @@ const Input: FC<Iprops> = ({ onChange, inputRef, onClick, loading, value }) => {
                 placeholder="Search for Products..."
                 value={value}
             />
-            {loading && "Loading..."}
         </div>
     );
 };

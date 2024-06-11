@@ -1,9 +1,11 @@
+//@ts-nocheck
 "use client";
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useMemo, useRef, useState } from "react";
 import Input from "./Input";
 import SearchSuggestionList from "./searchSuggestionList";
 import RecentSearchSuggestionList from "./RecentSearchSuggestionList";
 import useDebounce from "@/hooks/useDebounce";
+import { useQuery } from "@tanstack/react-query";
 interface Iprops {
     responsiveMode: boolean;
 }
@@ -13,15 +15,27 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
 
     const [openSearchSuggestionPopup, setOpenSearchSuggestionPopup] =
         useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const debounceValue = useDebounce(inputValue);
 
     const [searchResult, setSearchResult] = useState<Product[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
+    const [isReFetching, setIsReFetching] = useState(true);
+
+
+
+
+
+
+
+
+
+
     // handle input change
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setIsReFetching(true)
         let value = e.target.value;
         setInputValue(value);
         if (value.length > 0) {
@@ -42,28 +56,53 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         }
     };
 
-    const fetchUsers = async () => {
+    const handleSelectSuggestion = (item: string) => {
+        // setIsReFetching(false);
+        setInputValue(item);
+        setOpenSearchSuggestionPopup(false)
+
+    }
+
+
+    const fetchUsers = async (query: string) => {
         try {
-            setIsLoading(true);
+            // setIsLoading(true);
             let response = await fetch(
-                `https://dummyjson.com/products/search?q=${inputValue}`
+                `https://dummyjson.com/products/search?q=${query}`
             );
             let result = await response.json();
-            console.log(result);
+            return result.products
 
-            setSearchResult(result.products);
-            setIsLoading(false);
+            // setSearchResult(result.products);
+            // setIsLoading(false);
             // setSuggestions(true);
         } catch (error) {
+            // setIsLoading(false);
             console.log(error);
         }
     };
 
+
+    const { data: suggestions = [], isLoading, isError } = useQuery<Product[], Error>({
+        queryKey: ['fetch-suggestions', debounceValue],
+        queryFn: () => fetchUsers(debounceValue),
+
+        enabled: debounceValue.length > 2 && isReFetching,
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        cacheTime: 10 * 60 * 1000,
+    });
+
+
+
     useEffect(() => {
-        if (inputValue.length > 0) {
-            fetchUsers();
+        if (suggestions) {
+            setSearchResult(suggestions)
         }
-    }, [debounceValue]);
+    }, [suggestions]);
+
+
+
+
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -73,7 +112,6 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                 inputRef.current !== event.target
             ) {
                 setOpenSearchSuggestionPopup(false);
-                // setRecentSearch(false);
             }
         };
 
@@ -81,7 +119,9 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         return () => window.removeEventListener("click", handleClickOutside);
     }, []);
 
-    console.log(inputRef);
+
+
+
 
     return (
         <div
@@ -144,7 +184,7 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                 )}
             </div>
             {openSearchSuggestionPopup && searchResult.length > 0 && (
-                <SearchSuggestionList inputValue={inputValue} containerRef={containerRef} list={searchResult} />
+                <SearchSuggestionList handleSelectSuggestion={handleSelectSuggestion} inputValue={inputValue} containerRef={containerRef} list={searchResult} />
             )}
 
             {/* <RecentSearchSuggestionList /> */}
