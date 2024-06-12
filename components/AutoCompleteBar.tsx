@@ -5,24 +5,26 @@ import Input from "./Input";
 import SearchSuggestionList from "./searchSuggestionList";
 import RecentSearchSuggestionList from "./RecentSearchSuggestionList";
 import useDebounce from "@/hooks/useDebounce";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery } from "react-query";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 interface Iprops {
     responsiveMode: boolean;
 }
 const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
-    const [inputValue, setInputValue] = useState("");
-
     const [openSearchSuggestionPopup, setOpenSearchSuggestionPopup] =
         useState(false);
-    const [isLoading, setIsLoading] = useState(false);
-    const debounceValue = useDebounce(inputValue);
-
+    // const [isLoading, setIsLoading] = useState(false);
     const [searchResult, setSearchResult] = useState<Product[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
-
-
     const inputRef = useRef<HTMLInputElement>(null);
     const [isReFetching, setIsReFetching] = useState(true);
+    const searchParams = useSearchParams();
+    const params = new URLSearchParams(searchParams);
+    const router = useRouter();
+    const path = usePathname();
+    const [inputValue, setInputValue] = useState(params.get("q") || "");
+    const debounceValue = useDebounce(inputValue);
+
 
     // handle input change
 
@@ -43,6 +45,7 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
     const handleInputClick = () => {
         if (searchResult.length > 0) {
             setOpenSearchSuggestionPopup(true);
+            setIsReFetching(true)
         } else {
             setOpenSearchSuggestionPopup(false);
         }
@@ -52,44 +55,41 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         setIsReFetching(false);
         setInputValue(item);
         setOpenSearchSuggestionPopup(false);
+        params.set("q", item);
+        router.replace(`/product/search?${params}`)
     };
 
     const fetchUsers = async (query: string) => {
         try {
-            setIsLoading(true);
+            // setIsLoading(true);
             let response = await fetch(
                 `https://dummyjson.com/products/search?q=${query}`,
-                {
-                    cache: "force-cache"
-                }
+
             );
             let result = await response.json();
-            // return result.products;
-
-            setSearchResult(result.products);
-            setIsLoading(false);
-            setSuggestions(true);
+            return result.products;
+            // let result = await response.json();
+            // setSearchResult(result.products);
+            // setIsLoading(false);
+            // setSuggestions(true);
         } catch (error) {
-            setIsLoading(false);
+            // setIsLoading(false);
             console.log(error);
         }
     };
 
-    // const {
-    //     data: suggestions = [],
-    //     isLoading,
-    //     isError,
-    // } = useQuery<Product[], Error>({
-    //     queryKey: ["fetch-suggestions", debounceValue],
-    //     queryFn: () => fetchUsers(debounceValue),
-    //     enabled: debounceValue.length > 0 && isReFetching,
-    // });
-
-    useEffect(() => {
-        if (debounceValue.length > 0 && isReFetching) {
-            fetchUsers(debounceValue)
+    const {
+        data,
+        isLoading,
+        isError,
+    } = useQuery<Product[], Error>({
+        queryKey: ["fetch-suggestions", debounceValue],
+        queryFn: () => fetchUsers(debounceValue),
+        enabled: debounceValue.length > 0 && isReFetching,
+        onSuccess: (data) => {
+            setSearchResult(data);
         }
-    }, [debounceValue]);
+    });
 
 
     useEffect(() => {
@@ -157,6 +157,8 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                         onClick={() => {
                             setInputValue("");
                             setSearchResult([]);
+                            params.delete("q");
+                            router.replace(`/product/search?${params}`)
                         }}
                     >
                         <path
