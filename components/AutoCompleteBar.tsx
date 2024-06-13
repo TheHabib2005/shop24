@@ -37,6 +37,8 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         } else {
             setOpenSearchSuggestionPopup(false);
             setSearchResult([]);
+            params.delete("q");
+            router.replace(`/product/search?${params}`)
         }
     };
 
@@ -90,6 +92,13 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
             setSearchResult(data);
         }
     });
+
+    const handleDelete = () => {
+        setInputValue("");
+        setSearchResult([]);
+        params.delete("q");
+        router.replace(`/product/search?${params}`)
+    }
 
 
     useEffect(() => {
@@ -154,12 +163,7 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                         strokeWidth={1.5}
                         stroke="currentColor"
                         className="size-5 text-zinc-600 cursor-pointer"
-                        onClick={() => {
-                            setInputValue("");
-                            setSearchResult([]);
-                            params.delete("q");
-                            router.replace(`/product/search?${params}`)
-                        }}
+                        onClick={handleDelete}
                     >
                         <path
                             strokeLinecap="round"
