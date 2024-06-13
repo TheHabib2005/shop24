@@ -10,6 +10,14 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        "primary-color": "",
+        "secondary-color": "#2563EB",
+        "tertiary-color": "",
+        "quaternary-color": "",
+        "quinary-color": "",
+        "senary-color": "",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -2,12 +2,15 @@
 import useFetchProduct from '@/hooks/useFetchProduct'
 import Image from 'next/image'
 import React from 'react'
+import { ClipLoader } from 'react-spinners'
 
 const SearchPage = () => {
 
     const { products, isLoading } = useFetchProduct()
     if (isLoading) {
-        return <h1 className='text-white'>Loading...</h1>
+        return <div className='w-full min-h-full flex items-center justify-center'>
+            <ClipLoader color='#2563EB' />
+        </div>
     }
     return (
         <div className='text-white grid sm:grid-cols-3 '>

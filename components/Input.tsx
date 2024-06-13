@@ -5,11 +5,12 @@ interface Iprops {
     onClick: () => void;
     loading: boolean;
     value: string;
+    handleSubmit: () => void;
 }
-const Input: FC<Iprops> = ({ onChange, inputRef, onClick, loading, value }) => {
+const Input: FC<Iprops> = ({ onChange, inputRef, onClick, handleSubmit, value }) => {
     return (
-        <div>
-            {" "}
+        <form onSubmit={handleSubmit}>
+
             <input
                 // disabled={loading}
                 onClick={onClick}
@@ -20,7 +21,7 @@ const Input: FC<Iprops> = ({ onChange, inputRef, onClick, loading, value }) => {
                 placeholder="Search for Products..."
                 value={value}
             />
-        </div>
+        </form>
     );
 };
 

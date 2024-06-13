@@ -1,19 +1,19 @@
 //@ts-nocheck
 "use client";
-import React, { FC, useEffect, useMemo, useRef, useState } from "react";
+import React, { FC, FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import Input from "./Input";
 import SearchSuggestionList from "./searchSuggestionList";
 import RecentSearchSuggestionList from "./RecentSearchSuggestionList";
 import useDebounce from "@/hooks/useDebounce";
 import { useQuery } from "react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { fetchProduct } from "@/utils";
 interface Iprops {
     responsiveMode: boolean;
 }
 const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
     const [openSearchSuggestionPopup, setOpenSearchSuggestionPopup] =
         useState(false);
-    // const [isLoading, setIsLoading] = useState(false);
     const [searchResult, setSearchResult] = useState<Product[]>([]);
     const containerRef = useRef<HTMLDivElement>(null);
     const inputRef = useRef<HTMLInputElement>(null);
@@ -32,14 +32,8 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         setIsReFetching(true);
         let value = e.target.value;
         setInputValue(value);
-        if (value.length > 0) {
-            setOpenSearchSuggestionPopup(true);
-        } else {
-            setOpenSearchSuggestionPopup(false);
-            setSearchResult([]);
-            params.delete("q");
-            router.replace(`/product/search?${params}`)
-        }
+        setOpenSearchSuggestionPopup(value.length > 0);
+
     };
 
     // handle input click
@@ -50,6 +44,7 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
             setIsReFetching(true)
         } else {
             setOpenSearchSuggestionPopup(false);
+            setSearchResult([])
         }
     };
 
@@ -61,45 +56,43 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
         router.replace(`/product/search?${params}`)
     };
 
-    const fetchUsers = async (query: string) => {
-        try {
-            // setIsLoading(true);
-            let response = await fetch(
-                `https://dummyjson.com/products/search?q=${query}`,
 
-            );
-            let result = await response.json();
-            return result.products;
-            // let result = await response.json();
-            // setSearchResult(result.products);
-            // setIsLoading(false);
-            // setSuggestions(true);
-        } catch (error) {
-            // setIsLoading(false);
-            console.log(error);
-        }
-    };
 
+    // fetch data using react-query for data caching 
     const {
-        data,
         isLoading,
         isError,
     } = useQuery<Product[], Error>({
-        queryKey: ["fetch-suggestions", debounceValue],
-        queryFn: () => fetchUsers(debounceValue),
+        queryKey: ["fetch-suggestions", debounceValue || openSearchSuggestionPopup],
+        queryFn: () => fetchProduct(debounceValue),
         enabled: debounceValue.length > 0 && isReFetching,
         onSuccess: (data) => {
             setSearchResult(data);
+        },
+        onError: () => {
+            setSearchResult([]);
         }
     });
 
+    //delete input value
+
     const handleDelete = () => {
         setInputValue("");
-        setSearchResult([]);
-        params.delete("q");
-        router.replace(`/product/search?${params}`)
+        setSearchResult([])
+
     }
 
+    //handle enter key press
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        params.set("q", inputValue);
+        router.replace(`/product/search?${params}`)
+        setOpenSearchSuggestionPopup(false)
+    }
+
+
+    //handle outside click
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -124,6 +117,7 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                 }  `}
         >
             <Input
+                handleSubmit={handleSubmit}
                 loading={isLoading}
                 onClick={handleInputClick}
                 inputRef={inputRef}
@@ -181,7 +175,7 @@ const AutoCompleteBar: FC<Iprops> = ({ responsiveMode }) => {
                     list={searchResult}
                 />
             )}
-
+            {/* in development */}
             {/* <RecentSearchSuggestionList /> */}
         </div>
     );
