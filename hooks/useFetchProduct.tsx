@@ -1,15 +1,11 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "react-query";
 
 const useFetchProduct = () => {
-    const [isFetchingProduct, setIsFetchingProduct] = useState<boolean>(false);
+
     const [products, setPorducts] = useState<Product[]>([]);
-    const [isFetchingError, setIsFetchingError] = useState({
-        error: false,
-        message: "",
-    });
     const ssearchParams = useSearchParams();
     const params = new URLSearchParams(ssearchParams);
     const searchQuery = params.get("q");
@@ -37,17 +33,14 @@ const useFetchProduct = () => {
         }
     };
 
-    const { data, isLoading, isError, } = useQuery({
-        queryKey: ["fetch-product", searchQuery],
+    const { isLoading, isError, } = useQuery({
+        queryKey: ["fetch-product", searchQuery, params.toString()],
         queryFn: () => fetchProduct(),
         onSuccess: (data: Product[]) => {
             setPorducts(data);
         },
         // placeholderData:[]
     });
-
-    console.log(data);
-
 
 
     return { isLoading, products, isError }

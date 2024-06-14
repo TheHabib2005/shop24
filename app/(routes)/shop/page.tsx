@@ -1,3 +1,4 @@
+
 import BrandLists from '@/components/BrandLists'
 import BreadGrum from '@/components/BreadGrum'
 import CategoriesList from '@/components/CategoriesList'
@@ -5,6 +6,7 @@ import LayoutShiftIcon from '@/components/LayoutShiftIcon'
 import Pagination from '@/components/Pagination'
 import PriceRange from '@/components/PriceRange'
 import ProductCard from '@/components/ProductCard'
+import ProductListWrapper from '@/components/ProductListWrapper'
 import RatingStar from '@/components/RatingStar'
 import ResetFilter from '@/components/ResetFilter'
 import SortDropDownBox from '@/components/SortDropDownBox'
@@ -33,14 +35,8 @@ const page = () => {
                         <SortDropDownBox />
                     </div>
                 </header>
+                <ProductListWrapper />
 
-                <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3  pb-5  ">
-                    {
-                        staticData.featureProductList.map(prod => {
-                            return <ProductCard key={prod.id} product={prod} />
-                        })
-                    }
-                </div>
                 {/* <Pagination paginationItems={6} /> */}
             </div>
 
@@ -49,4 +45,5 @@ const page = () => {
 }
 
 export default page
+
 
