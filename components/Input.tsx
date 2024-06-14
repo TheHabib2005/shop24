@@ -1,11 +1,11 @@
-import React, { FC } from "react";
+import React, { FC, FormEvent } from "react";
 interface Iprops {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     inputRef: React.RefObject<HTMLInputElement>;
     onClick: () => void;
     loading: boolean;
     value: string;
-    handleSubmit: () => void;
+    handleSubmit: (e: FormEvent) => void;
 }
 const Input: FC<Iprops> = ({ onChange, inputRef, onClick, handleSubmit, value }) => {
     return (
