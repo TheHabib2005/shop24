@@ -39,7 +39,7 @@ const useFetchProduct = () => {
         onSuccess: (data: Product[]) => {
             setPorducts(data);
         },
-        placeholderData:[]
+        //placeholderData:[]
     });
 
 
