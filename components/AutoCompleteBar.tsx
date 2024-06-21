@@ -54,7 +54,7 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
         }
     }, [params, router]);
 
-    const { isLoading, isError } = useQuery<Product[], Error>({
+    const { isFetching, isError } = useQuery<Product[], Error>({
         queryKey: ["fetch-suggestions", debounceValue || openSearchSuggestionPopup],
         queryFn: () => fetchProduct(debounceValue),
         enabled: debounceValue.length > 0 && isReFetching,
@@ -112,7 +112,7 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
         >
             <Input
                 handleSubmit={handleSubmit}
-                loading={isLoading}
+                loading={isFetching}
                 onClick={handleInputClick}
                 inputRef={inputRef}
                 onChange={handleInputChange}
@@ -123,10 +123,10 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
                 ref={containerRef}
                 className="w-10 h-10 absolute right-0 rounded-full flex items-center justify-center text-zinc-600 dark:text-zinc-500 top-[8%]"
             >
-                {isLoading && (
+                {isFetching && (
                     <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-gray-200" aria-live="polite" aria-busy="true"></div>
                 )}
-                {!isLoading && inputValue === "" && (
+                {!isFetching && inputValue === "" && (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"
@@ -143,7 +143,7 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
                         />
                     </svg>
                 )}
-                {!isLoading && inputValue.length > 0 && (
+                {!isFetching && inputValue.length > 0 && (
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

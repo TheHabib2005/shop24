@@ -4,6 +4,7 @@ import "../globals.css";
 import Header from "@/components/Header";
 import TranstackQueryProvider from "@/components/TranstackQueryProvider";
 import NextTopLoader from "nextjs-toploader";
+import ShoppingCartBar from "@/components/ShoppingCartBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +37,7 @@ export default function RootLayout({
                 <TranstackQueryProvider>
                     <main className="max-w-[1440px] mx-auto px-6 w-[100%]">
                         <Header />
+                        <ShoppingCartBar />
                         {children}
                     </main>
                 </TranstackQueryProvider>

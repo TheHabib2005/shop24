@@ -8,20 +8,18 @@ import { FaRegHeart } from "react-icons/fa6";
 import { MdOutlineShare } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
 import { useRouter, useSearchParams } from 'next/navigation';
-
+import { decryptObject, encryptObject } from '@/utils';
+import { useCartStore } from "@/zustant-store/useCartStore";
 const ProductDetails = ({ params }: { params: any }) => {
-    const searchParams = useSearchParams();
-    const id = searchParams.get('id');
-    const price = searchParams.get('price');
-    const brand = searchParams.get('id');
-    // const id = searchParams.get('id');
 
-    const name = searchParams.get('title');
-    const description = searchParams.get('description');
-    const images = searchParams.get('thumbnail')
+    let text = localStorage.getItem("current-product");
+    let { thumbnail, title, price } = decryptObject(text!);
+    let product = decryptObject(text!);
 
-    console.log(name);
 
+    const {
+        ProductaddToCart
+    } = useCartStore();
     return (
         <section className='mt-5'>
             <div>
@@ -30,19 +28,19 @@ const ProductDetails = ({ params }: { params: any }) => {
             <div className='lg:flex items-start mt-10  w-full'>
                 <div className='flex items-start gap-x-5 flex-1 2xl:flex-row flex-col-reverse '>
                     {/* <div className='2xl:flex-col flex items-center 2xl:mt-0 mt-5 2xl:gap-0 gap-2'>
-                        <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-2.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px]  ' />
+                        <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/thumbnail/product-details/2/product-2.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px]  ' />
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-3.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-4.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-5.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
                     </div> */}
                     <div>
-                        <img src={images || ""} alt="prod-image" className=' 2xl:w-[700px] w-full rounded-md' />
+                        <img src={thumbnail || ""} alt="prod-image" className=' 2xl:w-[700px] w-full rounded-md' />
                     </div>
 
 
                 </div>
                 <div className='flex-1 2xl:ml-20 md:ml-10'>
-                    <h1 className='text-zinc-800 dark:text-white text-3xl font-bold'>{name}</h1>
+                    <h1 className='text-zinc-800 dark:text-white text-3xl font-bold'>{title}</h1>
                     <div className='flex items-center gap-3 mt-3'>
                         <div className='text-yellow-500 flex items-center text-xl'>
                             <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar />
@@ -71,7 +69,9 @@ const ProductDetails = ({ params }: { params: any }) => {
                     </div>
 
                     <div className='flex items-center mt-5 gap-3'>
-                        <button className='w-full py-4 flex items-center justify-center    text-xl text-white gap-5 bg-blue-600 hover:bg-blue-500 rounded-md'> <GrCart />  Add to Cart</button>
+                        <button className='w-full py-4 flex items-center justify-center    text-xl text-white gap-5 bg-blue-600 hover:bg-blue-500 rounded-md' onClick={() =>{
+ProductaddToCart({...product,quantity:1})
+                        }}> <GrCart />  Add to Cart</button>
                         <button className=' text-white bg-zinc-800 p-5 text-xl  hover:bg-zinc-700 rounded-md'><FaRegHeart /></button>
                         <button className=' text-white bg-zinc-800 p-5 text-xl  hover:bg-zinc-700 rounded-md'><MdOutlineShare /></button>
                     </div>

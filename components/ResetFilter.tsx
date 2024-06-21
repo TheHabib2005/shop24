@@ -8,7 +8,7 @@ const ResetFilter = () => {
 
     return (
         <button className='text-sm text-zinc-800 dark:text-zinc-500 hover:text-neutral-200 ' onClick={() => {
-            router.push(`${process.env.NEXT_PUBLIC_APP_URL}/${path}`)
+            router.push(`${path}`)
             setTimeout(() => {
                 window.location.reload()
             }, 200)

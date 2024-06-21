@@ -1,46 +1,57 @@
-"use client"
-import Image from 'next/image'
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
-import React, { FC, useEffect, useState } from 'react'
+"use client";
+import { encryptObject } from "@/utils";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FC } from "react";
 interface IProps {
-    product: any
+    product: any;
 }
 const ProductCard: FC<IProps> = ({ product }) => {
-
-
-
-    const path = usePathname();
+    const router = useRouter();
 
     return (
         <div className="relative m-1 flex w-full max-w-xs flex-col overflow-hidden rounded-lg  bg-zinc-200 dark:bg-zinc-800 shadow-md mx-auto">
-            <Link
-                className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
+            <div
+                className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer"
+                onClick={() => {
+                    let text = encryptObject(product);
 
-                href={{ pathname: `/product/${product.category}/${product.title.replace(/\s/g, '-')}`, query: product }}
+
+                    localStorage.setItem("current-product", text);
+                    router.push(
+                        `/product/${product.category}/${product.title.replace(
+                            /\s/g,
+                            "-"
+                        )}?pid=${text.substring(0, 100)}`
+                    );
+                }}
             >
                 <Image
                     src={product.thumbnail}
                     width={100000}
-                    className='object-contain'
+                    className="object-contain"
                     height={1000000}
-                    alt=''
+                    alt=""
                 />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium  text-white">
                     39% OFF
                 </span>
-            </Link>
+            </div>
             <div className="mt-4 px-5 pb-2">
                 <a href="#">
                     <h5 className="text-xl tracking-tight  text-zinc-800 dark:text-white">
                         {product.title.substring(0, 30)}
-                        <span className='ml-5  text-zinc-800 dark:text-white'>{"..."}</span>
+                        <span className="ml-5  text-zinc-800 dark:text-white">{"..."}</span>
                     </h5>
                 </a>
                 <div className="mt-2 mb-5">
                     <p>
-                        <span className="text-3xl font-bold  text-zinc-800 dark:text-white ">$449</span>
-                        <span className="text-sm  text-zinc-800 dark:text-white  line-through">$699</span>
+                        <span className="text-3xl font-bold  text-zinc-800 dark:text-white ">
+                            $449
+                        </span>
+                        <span className="text-sm  text-zinc-800 dark:text-white  line-through">
+                            $699
+                        </span>
                     </p>
                     <div className="flex items-center">
                         <svg
@@ -93,12 +104,9 @@ const ProductCard: FC<IProps> = ({ product }) => {
                         </span>
                     </div>
                 </div>
-
             </div>
         </div>
+    );
+};
 
-
-    )
-}
-
-export default ProductCard
+export default ProductCard;
