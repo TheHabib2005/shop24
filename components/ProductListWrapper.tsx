@@ -5,8 +5,8 @@ import ProductCard from './ProductCard';
 import { ClipLoader } from 'react-spinners';
 
 const ProductListWrapper = () => {
-    const { products, isLoading, isError } = useFetchProduct()
-    if (isLoading) {
+    const { products, isLoading, isError, isFetching } = useFetchProduct()
+    if (isFetching) {
         return <div className='w-full min-h-full flex items-center justify-center'>
             <ClipLoader color='#2563EB' />
         </div>
@@ -17,7 +17,8 @@ const ProductListWrapper = () => {
         </div>
     }
 
-    if (products.length === 0 && !isLoading) {
+
+    if (products.length <= 0 && !isFetching) {
         return <div className='w-full min-h-full flex items-center justify-center text-white text-2xl py-20'>
             <h1>OPPS! - Search Product Not Found 😢😢</h1>
         </div>

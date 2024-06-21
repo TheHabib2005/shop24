@@ -1,3 +1,4 @@
+"use client"
 import BreadGrum from '@/components/BreadGrum'
 import React from 'react'
 import { MdOutlineStar } from "react-icons/md";
@@ -6,9 +7,20 @@ import { GrCart } from "react-icons/gr";
 import { FaRegHeart } from "react-icons/fa6";
 import { MdOutlineShare } from "react-icons/md";
 import { IoPricetagsOutline } from "react-icons/io5";
+import { useRouter, useSearchParams } from 'next/navigation';
 
-const page = ({ params }: { params: any }) => {
-    console.log(params);
+const ProductDetails = ({ params }: { params: any }) => {
+    const searchParams = useSearchParams();
+    const id = searchParams.get('id');
+    const price = searchParams.get('price');
+    const brand = searchParams.get('id');
+    // const id = searchParams.get('id');
+
+    const name = searchParams.get('title');
+    const description = searchParams.get('description');
+    const images = searchParams.get('thumbnail')
+
+    console.log(name);
 
     return (
         <section className='mt-5'>
@@ -17,20 +29,20 @@ const page = ({ params }: { params: any }) => {
             </div>
             <div className='lg:flex items-start mt-10  w-full'>
                 <div className='flex items-start gap-x-5 flex-1 2xl:flex-row flex-col-reverse '>
-                    <div className='2xl:flex-col flex items-center 2xl:mt-0 mt-5 2xl:gap-0 gap-2'>
+                    {/* <div className='2xl:flex-col flex items-center 2xl:mt-0 mt-5 2xl:gap-0 gap-2'>
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-2.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px]  ' />
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-3.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-4.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-5.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
-                    </div>
+                    </div> */}
                     <div>
-                        <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-1.png" alt="prod-image" className=' 2xl:w-[700px] w-full rounded-md' />
+                        <img src={images} alt="prod-image" className=' 2xl:w-[700px] w-full rounded-md' />
                     </div>
 
 
                 </div>
-                <div className='flex-1 2xl:ml-20 ml-10'>
-                    <h1 className='text-zinc-800 dark:text-white text-3xl font-bold'>Jenny’s Closets - The winter top for female, green Jenny’s Closets - The winter top for female, green</h1>
+                <div className='flex-1 2xl:ml-20 md:ml-10'>
+                    <h1 className='text-zinc-800 dark:text-white text-3xl font-bold'>{name}</h1>
                     <div className='flex items-center gap-3 mt-3'>
                         <div className='text-yellow-500 flex items-center text-xl'>
                             <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar /> <MdOutlineStar />
@@ -38,7 +50,7 @@ const page = ({ params }: { params: any }) => {
                         <span className='text-zinc-800 dark:text-white'>120 Reviews</span>
                     </div>
                     <div className='mt-5 flex items-center gap-5'>
-                        <span className='text-zinc-800 dark:text-white text-3xl'>$49</span>
+                        <span className='text-zinc-800 dark:text-white text-3xl'>${price}</span>
                         <span className='text-2xl line-through text-gray-400'>$99</span>
 
                     </div>
@@ -79,15 +91,15 @@ const page = ({ params }: { params: any }) => {
                 </div>
 
             </div>
-            <div className='flex items-center gap-4 text-white mt-10 pb-5 border-b border-zinc-600'>
+            <div className='flex  items-center gap-4 text-white mt-10 pb-5 border-b border-zinc-600'>
                 <div className='font-semibold bg-blue-600 text-white p-2 rounded-md cursor-pointer '>Description</div>
                 <div className='cursor-pointer'>Reviews <span className='p-1 rounded-full ml-2 bg-gray-600 text-zinc-400'>157</span></div>
                 <div>Support</div>
             </div>
             <div>
-                <div className=' p-5 w-full flex  gap-4'>
+                <div className=' p-5 w-full flex  md:flex-row flex-col gap-4'>
 
-                    <div className='w-1/2'>
+                    <div className='md:w-1/2 w-full'>
                         <div className=' flex items-start gap-5 mt-5'>
                             <div className='w-[100px]'><img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/avatar-1.png" alt="" className='w-[50px] object-contain' /></div>
                             <div className='flex flex-col gap-3 text-white'>
@@ -125,7 +137,7 @@ const page = ({ params }: { params: any }) => {
                         </div>
                     </div>
                     {/*  */}
-                    <div className='w-1/2 px-4 '>
+                    <div className='md:w-1/2 px-4 w-full '>
                         <div>
                             <h3 className='text-zinc-700 dark:text-white font-semibold text-xl'>Write your review</h3>
                             <p className='text-zinc-300 text-lg'>Your email address will not be published. Required fields are marked*</p>
@@ -163,4 +175,4 @@ const page = ({ params }: { params: any }) => {
     )
 }
 
-export default page
+export default ProductDetails

@@ -16,7 +16,8 @@ const ProductCard: FC<IProps> = ({ product }) => {
         <div className="relative m-1 flex w-full max-w-xs flex-col overflow-hidden rounded-lg  bg-zinc-200 dark:bg-zinc-800 shadow-md mx-auto">
             <Link
                 className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
-                href={`/product/${product.category}/${product.id}`}
+
+                href={{ pathname: `/product/${product.category}/${product.id}`, query: product }}
             >
                 <Image
                     src={product.thumbnail}
