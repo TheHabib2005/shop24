@@ -36,7 +36,7 @@ const ProductDetails = ({ params }: { params: any }) => {
                         <img src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/product-details/2/product-5.png" alt="" className='2xl:w-[150px] w-[120px] rounded-md cursor-pointer 2xl:mb-3 mb-0 h-[100px] ' />
                     </div> */}
                     <div>
-                        <img src={images} alt="prod-image" className=' 2xl:w-[700px] w-full rounded-md' />
+                        <img src={images || ""} alt="prod-image" className=' 2xl:w-[700px] w-full rounded-md' />
                     </div>
 
 
