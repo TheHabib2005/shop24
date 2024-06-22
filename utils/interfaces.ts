@@ -19,7 +19,7 @@ interface Meta {
   qrCode: string;
 }
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   description: string;
@@ -42,4 +42,5 @@ interface Product {
   meta: Meta;
   images: string[];
   thumbnail: string;
+  quantity?: number;
 }
