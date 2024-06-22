@@ -75,3 +75,8 @@
 // };
 
 // export default CartPage;
+
+
+export const page = () => {
+  return <span>Cart Page</span>
+}
