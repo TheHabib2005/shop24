@@ -60,6 +60,12 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
         enabled: debounceValue.length > 0 && isReFetching,
         onSuccess: (data) => setSearchResult(data),
         onError: () => setSearchResult([]),
+        refetchOnMount: true,
+        refetchOnWindowFocus: false,
+        // Caching
+        cacheTime: 5 * 60 * 1000, // Time in milliseconds, data remains in cache (5 minutes)
+        staleTime: 0, // Time in milliseconds before data is considered stale
+        keepPreviousData: true,
     });
 
     const handleDelete = () => {
