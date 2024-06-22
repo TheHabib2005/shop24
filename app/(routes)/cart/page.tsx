@@ -1,6 +1,6 @@
 import CartItemWrapper from "@/components/carts-components/CartItemWrapper";
 import { useCartStore } from "@/zustant-store/useCartStore";
-
+import {Link} from " next/link"
 const CartPage = () => {
   const { cart, totalAmount } = useCartStore()
 
