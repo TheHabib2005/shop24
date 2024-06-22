@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 "use client"
 import CartItemWrapper from "@/components/carts-components/CartItemWrapper";
 import { useCartStore } from "@/zustant-store/useCartStore";
