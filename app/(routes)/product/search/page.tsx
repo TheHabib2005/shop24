@@ -66,7 +66,6 @@ import ProductListWrapper from '@/components/ProductListWrapper'
 import RatingStar from '@/components/RatingStar'
 import ResetFilter from '@/components/ResetFilter'
 import SortDropDownBox from '@/components/SortDropDownBox'
-import { staticData } from '@/staticData'
 import React from 'react'
 import dynamic from 'next/dynamic'
 
