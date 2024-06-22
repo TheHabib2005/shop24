@@ -68,6 +68,12 @@ import ResetFilter from '@/components/ResetFilter'
 import SortDropDownBox from '@/components/SortDropDownBox'
 import { staticData } from '@/staticData'
 import React from 'react'
+import dynamic from 'next/dynamic'
+
+const DynamicProductListWrapper = dynamic(() => import('@/components/ProductListWrapper'), {
+    loading: () => <p>Loading...</p>,
+})
+
 
 const page = () => {
     return (
@@ -91,7 +97,7 @@ const page = () => {
                         <SortDropDownBox />
                     </div>
                 </header>
-                <ProductListWrapper />
+                <DynamicProductListWrapper />
 
                 {/* <Pagination paginationItems={6} /> */}
             </div>
