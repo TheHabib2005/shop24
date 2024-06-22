@@ -6,7 +6,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { FC, useEffect } from "react";
 const CartBar: FC = () => {
-
     const { isCartBarOpen, setIsCartBarOpen } = useGlobalTempState();
     const {
         cart,
@@ -16,7 +15,6 @@ const CartBar: FC = () => {
         decrementQuantity,
     } = useCartStore();
     return (
-
         <div
             className={`w-[100%]  h-screen flex justify-between   fixed top-0 ${isCartBarOpen ? " right-0" : "right-[-100%]"
                 }  z-10 transition-all duration-100 `}
@@ -102,7 +100,10 @@ const CartBar: FC = () => {
                                                     />
                                                 </div>
                                             </div>
-                                            <Link className="z-30 flex flex-row space-x-4" href={`/products/${product.category}/${product.id}`}>
+                                            <Link
+                                                className="z-30 flex flex-row space-x-4"
+                                                href={`/products/${product.category}/${product.id}`}
+                                            >
                                                 <div className="relative h-16 w-16 cursor-pointer overflow-hidden rounded-md border border-neutral-300 bg-neutral-300 dark:border-neutral-700 dark:bg-neutral-900 dark:hover:bg-neutral-800">
                                                     <Image
                                                         alt="Acme Circles T-Shirt"
@@ -237,19 +238,17 @@ const CartBar: FC = () => {
                             >
                                 Proceed to Checkout
                             </Link>
-                            <Link
-                                href={`/cart`}
-                                className="block w-full rounded-full mt-3 bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
-                            >
-                                View Cart Page
-                            </Link>
+                            {/* <Link
+                href={`/cart`}
+                className="block w-full rounded-full mt-3 bg-blue-600 p-3 text-center text-sm font-medium text-white opacity-90 hover:opacity-100"
+              >
+                View Cart Page
+              </Link> */}
                         </>
                     )}
                 </div>
             </div>
-
         </div>
-
     );
 };
 

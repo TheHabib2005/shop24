@@ -5,6 +5,7 @@ const nextConfig = {
       "static-01.daraz.com.bd",
       "cdn.dummyjson.com",
       "https://devshopbd.com",
+      "localhost"
     ],
   },
   experimental: {
