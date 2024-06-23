@@ -105,27 +105,10 @@ export default function Home() {
           </a>
         </div>
       </section>
+
       <section className="py-10">
         <div>
-          <h1 className="text-zinc-800 dark:text-white font-semibold text-3xl">Best Selling Products</h1>
-        </div>
-        <div className=" mt-6 grid xl:grid-cols-4 md:grid-cols-3 grid-cols-2  gap-5">
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-          <BestSellingProdCard />
-
-
-
-        </div>
-      </section>
-      <section className="py-10">
-        <div>
-          <h1 className="text-zinc-800 dark:text-white font-semibold text-3xl">Browse By Category</h1>
+          <h1 className="text-zinc-800 dark:text-white font-semibold text-2xl">Browse By Category</h1>
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 lg:py-10 py-5">
           <a href="/products/smartphone">

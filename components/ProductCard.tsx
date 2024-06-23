@@ -16,12 +16,16 @@ const ProductCard: FC<IProps> = ({ product }) => {
 
 
             localStorage.setItem("current-product", text);
-            router.push(
-                `/product/${product.category}/${product.title.replace(
-                    /\s/g,
-                    "-"
-                )}?pid=${text.substring(0, 100)}`
-            );
+            // router.push(
+            //     `/product/${product.category}/${product.title.replace(
+            //         /\s/g,
+            //         "-"
+            //     )}?pid=${text.substring(0, 100)}`
+            // );
+            window.location.href = `/product/${product.category}/${product.title.replace(
+                /\s/g,
+                "-"
+            )}?pid=${text.substring(0, 100)}`
         }}>
             <div
                 className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer"

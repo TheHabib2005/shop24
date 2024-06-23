@@ -23,7 +23,7 @@ const ProductDeatails = () => {
     return (
         <>
             <div className='lg:flex items-start mt-10  w-full'>
-                <div className='flex items-start gap-x-5 flex-1 2xl:flex-row flex-col-reverse '>
+                <div className='flex items-start gap-x-5 flex-1 2xl:flex-row flex-col-reverse  '>
                     <div className='2xl:flex-col flex items-center 2xl:mt-0 mt-5 2xl:gap-0 gap-2'>
                         <img src={thumbnail} alt="" className='2xl:w-[120px] w-[100px] rounded-md cursor-pointer 2xl:mb-3 mb-0 border border-zinc-800  ' />
                         <img src={thumbnail} alt="" className='2xl:w-[120px] w-[100px] rounded-md cursor-pointer 2xl:mb-3 mb-0 border border-zinc-800  ' />   <img src={thumbnail} alt="" className='2xl:w-[120px] w-[100px] rounded-md cursor-pointer 2xl:mb-3 mb-0 border border-zinc-800  ' />
@@ -38,7 +38,7 @@ const ProductDeatails = () => {
 
 
                 </div>
-                <div className='flex-1 '>
+                <div className='flex-1   md:pt-0 pt-10'>
                     <h1 className='text-zinc-800 dark:text-white text-3xl font-bold'>{title}</h1>
                     <div className='flex items-center gap-3 mt-3'>
                         <div className='text-yellow-500 flex items-center text-xl'>
@@ -107,7 +107,7 @@ const ProductDeatails = () => {
                 <div>Support</div>
             </div>
             <div>
-                <div className=' p-5 w-full flex  md:flex-row flex-col gap-4'>
+                <div className=' md:p-5 py-5 px-0 w-full flex  md:flex-row flex-col gap-4'>
 
                     <div className='md:w-1/2 w-full'>
                         {
@@ -137,7 +137,7 @@ const ProductDeatails = () => {
                         }
                     </div>
                     {/*  */}
-                    <div className='md:w-1/2 px-4 w-full '>
+                    <div className='md:w-1/2 md:px-4 w-full '>
                         <div>
                             <h3 className='text-zinc-700 dark:text-white font-semibold text-xl'>Write your review</h3>
                             <p className='text-zinc-300 text-lg'>Your email address will not be published. Required fields are marked*</p>

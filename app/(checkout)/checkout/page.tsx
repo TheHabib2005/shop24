@@ -81,12 +81,28 @@ const CheckoutPage = () => {
                             />
                         </div>
 
+                        <div className="relative mt-4">
+                            <span className="text-md text-zinc-500 mb-2 inline-flex z-10">
+                                Payment Method
+                            </span>
+
+                            <div className="flex items-center gap-x-2 ">
+                                <input type="radio" checked={true} name="" id="cod" />
+                                <label htmlFor="cod" className="text-white font-semibold text-md cursor-pointer"> Cash on delivery</label>
+                            </div>
+
+
+                        </div>
+
                         <button className="w-full mt-10 p-4 cursor-pointer rounded-md bg-blue-700 hover:bg-blue-900 text-white font-semibold">
                             Place Order
                         </button>
                     </form>
                 </div>
                 <div className="col-span-3  border-l border-zinc-700 lg:pt-5 pt-10 px-5 max-w-full">
+                    <h1 className="text-2xl my-5 text-white font-semibold  text-center">
+                        Your Orders
+                    </h1>
                     {
                         cart.length > 0 ? cart.map((prod: any) => {
                             return <Link href={""} key={prod.id} className="flex  mt-6 items-center w-full gap-3">

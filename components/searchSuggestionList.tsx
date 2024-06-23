@@ -1,4 +1,5 @@
 "use client"
+import { Product } from "@/utils/interfaces";
 import React, { FC } from "react";
 
 
