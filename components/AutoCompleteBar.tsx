@@ -8,6 +8,7 @@ import { useQuery } from "react-query";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { fetchProduct } from "@/utils";
 import SearchSuggestionList from "./searchSuggestionList";
+import { Product } from "@/utils/interfaces";
 
 interface IProps {
     responsiveMode: boolean;
