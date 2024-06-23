@@ -70,15 +70,15 @@ const SortDropDownBox = () => {
                 </span>
             </div>
             {isoptionsOpen && (
-                <ul className="bg-zinc-400 dark:bg-zinc-950 flex flex-col gap-y-2 p-2 rounded-sm  w-full absolute top-[120%] z-10 left-0">
+                <ul className="bg-zinc-400 dark:bg-zinc-700 flex flex-col gap-y-2 p-2 rounded-sm  w-full absolute top-[120%] z-10 left-0">
                     {sortOption.map((option, index) => {
                         return (
                             <li
                                 key={index}
                                 id="sort-item"
                                 onClick={() => handleSelect(option)}
-                                className={`text-sm capitalize  text-zinc-950 ${selectedOption === option.value
-                                    ? "bg-[#2563EB] hover:bg-[#2563EB] text-white"
+                                className={`text-sm capitalize text-white  ${selectedOption === option.value
+                                    ? "bg-[#2563EB] hover:bg-[#2563EB] "
                                     : "hover:bg-[#2563EB]"
                                     } p-2 cursor-pointer rounded-sm`}
                             >

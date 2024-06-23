@@ -1,15 +1,19 @@
 "use client";
 import useFetchProduct from '@/hooks/useFetchProduct';
 import React from 'react'
-import ProductCard from './ProductCard';
-import { ClipLoader } from 'react-spinners';
+import dynamic from "next/dynamic"
+import SpainerLoader from './SpainerLoader';
+import ProductCardSkeleton from './ProductCardSkelection';
 
 const ProductListWrapper = () => {
+
+    const ProductCard = dynamic(() => import("./ProductCard"), {
+        loading: () => <ProductCardSkeleton />,
+    })
+
     const { products, isLoading, isError, error, isFetching } = useFetchProduct()
     if (isFetching) {
-        return <div className='w-full min-h-full flex items-center justify-center'>
-            <ClipLoader color='#2563EB' />
-        </div>
+        return <SpainerLoader />
     }
     if (isError || error) {
         return <div className='w-full min-h-full flex items-center justify-center'>

@@ -23,3 +23,32 @@ export function decryptObject(encryptedString: string) {
   const decryptedData = bytes.toString(CryptoJS.enc.Utf8);
   return JSON.parse(decryptedData);
 }
+
+export function calculateDiscountedPrice<T extends number>(
+  originalPrice: T,
+  discountPercentage: T
+): number {
+  // Convert both inputs to numbers
+  const originalPriceNumber =
+    typeof originalPrice === "string"
+      ? parseFloat(originalPrice)
+      : originalPrice;
+  const discountPercentageNumber =
+    typeof discountPercentage === "string"
+      ? parseFloat(discountPercentage)
+      : discountPercentage;
+
+  // Ensure valid numbers are provided
+  if (isNaN(originalPriceNumber) || isNaN(discountPercentageNumber)) {
+    throw new Error(
+      "Invalid input: both original price and discount percentage must be valid numbers or numeric strings."
+    );
+  }
+
+  // Calculate the discount amount
+  const discountAmount = (originalPriceNumber * discountPercentageNumber) / 100;
+  const discountedPrice = originalPriceNumber - discountAmount;
+
+  // Return the discounted price
+  return discountedPrice;
+}

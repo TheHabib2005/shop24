@@ -61,20 +61,18 @@ import CategoriesList from '@/components/CategoriesList'
 import LayoutShiftIcon from '@/components/LayoutShiftIcon'
 import Pagination from '@/components/Pagination'
 import PriceRange from '@/components/PriceRange'
-import ProductCard from '@/components/ProductCard'
-import ProductListWrapper from '@/components/ProductListWrapper'
 import RatingStar from '@/components/RatingStar'
 import ResetFilter from '@/components/ResetFilter'
 import SortDropDownBox from '@/components/SortDropDownBox'
 import React from 'react'
 import dynamic from 'next/dynamic'
-
-const DynamicProductListWrapper = dynamic(() => import('@/components/ProductListWrapper'), {
-    loading: () => <p>Loading...</p>,
+import SpainerLoader from '@/components/SpainerLoader'
+const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
+    loading: () => <SpainerLoader />,
 })
+const SearchPage = () => {
 
 
-const page = () => {
     return (
         <div className='flex items-start gap-4  my-6   overflow-x-hidden font-semibold' >
 
@@ -96,7 +94,7 @@ const page = () => {
                         <SortDropDownBox />
                     </div>
                 </header>
-                <DynamicProductListWrapper />
+                <ProductList />
 
                 {/* <Pagination paginationItems={6} /> */}
             </div>
@@ -105,6 +103,6 @@ const page = () => {
     )
 }
 
-export default page
+export default SearchPage
 
 
