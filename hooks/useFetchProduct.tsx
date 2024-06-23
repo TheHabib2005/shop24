@@ -1,5 +1,6 @@
 
 import { fetchProduct } from "@/utils";
+import { Product } from "@/utils/interfaces";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useQuery } from "react-query";
