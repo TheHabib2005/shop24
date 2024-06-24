@@ -11,7 +11,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
     const router = useRouter();
 
     return (
-        <div className="relative m-1 flex w-full max-w-xs flex-col overflow-hidden rounded-lg  bg-zinc-200 dark:bg-zinc-900 shadow-md mx-auto cursor-pointer" onClick={() => {
+        <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  bg-zinc-200 dark:bg-zinc-900 shadow-md mx-auto cursor-pointer" onClick={() => {
             let text = encryptObject(product);
 
 
@@ -22,14 +22,6 @@ const ProductCard: FC<IProps> = ({ product }) => {
                     "-"
                 )}?pid=${text.substring(0, 100)}`
             );
-            // window.location.href = `/product/${product.category}/${product.title.replace(
-            //     /\s/g,
-            //     "-"
-            // )}?pid=${text.substring(0, 100)}`
-            // window.open(`/product/${product.category}/${product.title.replace(
-            //     /\s/g,
-            //     "-"
-            // )}?pid=${text.substring(0, 100)}`)
         }}>
             <div
                 className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer"

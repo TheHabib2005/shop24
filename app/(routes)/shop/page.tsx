@@ -27,7 +27,7 @@ const page = () => {
                 <RatingStar />
                 <PriceRange />
             </div>
-            <div className=' 2xl:w-[75%]  w-full bg-zinc-100 dark:bg-zinc-950  rounded-md pb-5 px-4'>
+            <div className=' 2xl:w-[75%]  w-full bg-zinc-100 dark:bg-zinc-950  rounded-md pb-5 md:px-4'>
                 <header className="flex items-center justify-between  mt-3">
                     <BreadGrum />
                     <div className='flex items-center justify-between '>

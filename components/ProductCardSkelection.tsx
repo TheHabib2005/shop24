@@ -5,7 +5,7 @@ import SpainerLoader from './SpainerLoader';
 const ProductCardSkeleton = () => {
     return (
 
-        <div className="max-w-sm rounded overflow-hidden shadow-lg animate-pulse">
+        <div className="w-full rounded overflow-hidden shadow-lg animate-pulse">
             <div className="h-[250px] rounded-sm bg-[#181818]" />
             <div className="mt-4">
                 <div className="h-8 bg-[#181818] mb-2 rounded-md" />

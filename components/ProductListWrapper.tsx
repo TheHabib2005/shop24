@@ -12,9 +12,9 @@ const ProductListWrapper = () => {
     })
 
     const { products, isLoading, isError, error, isFetching } = useFetchProduct()
-    if (isFetching) {
-        return <SpainerLoader />
-    }
+    // if (isFetching) {
+    //     return <SpainerLoader />
+    // }
     if (isError || error) {
         return <div className='w-full min-h-full flex items-center justify-center'>
             <h1>Failed To Search Product 😢😢</h1>
@@ -28,7 +28,7 @@ const ProductListWrapper = () => {
     }
     return (
 
-        <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3  pb-5  ">
+        <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3  pb-5   ">
             {
                 products.length > 0 && products?.map(prod => {
                     return <ProductCard key={prod.id} product={prod} />
