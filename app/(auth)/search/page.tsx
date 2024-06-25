@@ -1,13 +1,20 @@
 // app/components/ServerComponent.server.js
 import SearchBar from '@/components/SearchBar';
+import Prod from '@/components/prod';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
-
+import dynamic from 'next/dynamic';
+import SpainerLoader from '@/components/SpainerLoader';
+import { divide } from 'lodash';
+// const Prod = dynamic(() => import("@/components/prod"), {
+//     loading: () => <p>Loading yftherhrhr...</p>
+// })
 async function fetchData(q: string) {
     try {
-        const res = await fetch(`https://dummyjson.com/products/search?q=${q || ""}&limit=50`, {
-            next: { revalidate: 10 } // Enable ISR if needed
+        const res = await fetch(`https://dummyjson.com/products/search?q=${q || ""}&limit=150`, {
+            next: { revalidate: 10 },
+            cache: "force-cache" // Enable ISR if needed
         });
         if (!res.ok) {
             throw new Error('Failed to fetch data');
@@ -29,13 +36,15 @@ function ErrorComponent({ error }: { error: any }) {
 const Search = ({ searchParams }: { searchParams: any }) => {
     const data = fetchData(searchParams.query);
     console.log(searchParams.query);
-
-
     return (
         <div>
             <SearchBar />
 
-            <Suspense fallback={<LoadingComponent />}>
+            <Suspense fallback={<div>
+
+                Loading
+
+            </div>}>
                 <ServerComponentContent promise={data} />
             </Suspense>
         </div>
@@ -45,26 +54,12 @@ export default Search
 async function ServerComponentContent({ promise }: { promise: any }) {
     const { products } = await promise;
     return (
-        <div>
-            {/* Render your data */}
+
+        <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3  pb-5   ">
             {products.map((item: any) => (
-                <Link href={`/item?id=${item.id}`} key={item.id}>
-
-                    <Image
-                        width={400}
-                        height={400000}
-                        alt=''
-                        src={item.thumbnail}
-
-                    />
-                    {/* {products.thumbnail} */}
-
-
-                    {item.title}
-
-
-                </Link>
+                <Prod item={item} key={item.id} />
             ))}
         </div>
+
     );
 }
