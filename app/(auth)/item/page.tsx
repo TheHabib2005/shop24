@@ -18,10 +18,10 @@ function LoadingComponent() {
   return <div>Loading...</div>;
 }
 
-function ErrorComponent({ error }) {
+function ErrorComponent({ error }: { error: any }) {
   return <div>Error: {error.message}</div>;
 }
-const page = ({ searchParams }) => {
+const page = ({ searchParams }: { searchParams: any }) => {
 
   console.log(searchParams.id);
 
@@ -38,7 +38,7 @@ const page = ({ searchParams }) => {
 
 export default page
 
-async function ServerComponentContent({ promise }) {
+async function ServerComponentContent({ promise }: { promise: any }) {
   const product = await promise;
   return (
 
@@ -143,7 +143,7 @@ async function ServerComponentContent({ promise }) {
       <div className="bg-white shadow-md rounded-lg p-6 mt-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Reviews</h2>
         <div className="space-y-4">
-          {product.reviews.map(review =>
+          {product.reviews.map((review: any) =>
             <div className="border-t pt-4" key={review.rating}>
               <p className="text-gray-600">${review.comment}</p>
               <div className="flex justify-between items-center">

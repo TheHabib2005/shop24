@@ -22,11 +22,11 @@ function LoadingComponent() {
     return <div>Loading...</div>;
 }
 
-function ErrorComponent({ error }) {
+function ErrorComponent({ error }: { error: any }) {
     return <div>Error: {error.message}</div>;
 }
 
-const Search = ({ searchParams }) => {
+const Search = ({ searchParams }: { searchParams: any }) => {
     const data = fetchData(searchParams.query);
     console.log(searchParams.query);
 
@@ -42,12 +42,12 @@ const Search = ({ searchParams }) => {
     );
 }
 export default Search
-async function ServerComponentContent({ promise }) {
+async function ServerComponentContent({ promise }: { promise: any }) {
     const { products } = await promise;
     return (
         <div>
             {/* Render your data */}
-            {products.map(item => (
+            {products.map((item: any) => (
                 <Link href={`/item?id=${item.id}`} key={item.id}>
 
                     <Image
