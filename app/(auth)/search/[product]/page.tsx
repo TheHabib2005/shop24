@@ -7,10 +7,10 @@ import dynamic from 'next/dynamic';
 import ProductCardSkeleton from '@/components/ProductCardSkelection';
 import SearchBar from '@/components/SearchBar';
 import { ClipLoader } from 'react-spinners';
-import ProductCard from '@/components/ProductCard';
+// import ProductCard from '@/components/ProductCard';
 
 const Serach = () => {
-    const Prod = dynamic(() => import("@/components/prod"), {
+    const ProductCard = dynamic(() => import("@/components/ProductCard"), {
         loading: () => <ProductCardSkeleton />
     })
 
@@ -18,15 +18,15 @@ const Serach = () => {
     const { products, isFetching } = useFetchProduct();
 
     if (isFetching) {
-        return <div className='text-blue-600 p-10 flex items-center justify-center '>
-            <ClipLoader className='w-6 h-6 text-blue-700' />
+        return <div className=' p-10  bg-zinc-950 flex items-center justify-center  h-screen'>
+            <ClipLoader className='w-6 h-6 text-blue-700' color='#1d4ed8 ' />
         </div>
     }
 
     return (
 
 
-        <div className='p-4 bg-zinc-950'>
+        <div className='p-4 bg-zinc-950 min-h-screen max-h-max'>
             <SearchBar />
             <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-3 bg-zinc-950  pb-5   ">
                 {
@@ -35,6 +35,12 @@ const Serach = () => {
                     })
                 }
             </div>
+            {
+                products.length === 0 &&
+                <div className=' bg-zinc-950 flex items-center justify-center  '>
+                    <h1 className='font-bold text-xl capitalize text-zinc-400'>No Product Found</h1>
+                </div>
+            }
         </div>
 
 

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { IoMdStar, IoMdStarHalf } from "react-icons/io";
+import Images from "./Image";
 interface IProps {
     product: any;
 }
@@ -11,7 +12,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
     const router = useRouter();
 
     return (
-        <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  bg-zinc-200 dark:bg-zinc-900 shadow-md mx-auto cursor-pointer" onClick={() => {
+        <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  min-w-full bg-zinc-200 dark:bg-zinc-900 shadow-md mx-auto cursor-pointer col-span-1" onClick={() => {
             let text = encryptObject(product);
 
 
@@ -30,13 +31,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                 className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer"
 
             >
-                <Image
-                    src={product.thumbnail}
-                    width={100000}
-                    className="object-contain"
-                    height={1000000}
-                    alt=""
-                />
+                <Images src={product.thumbnail} />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium  text-white">
                     {Math.round(product.discountPercentage)}% OFF
                 </span>

@@ -9,8 +9,12 @@ import { ClipLoader } from "react-spinners";
 const SearchBar = () => {
     const { searchItems, addRecentSearch, deleteRecentSearch } =
         useRecentSearch();
+    const router = useRouter();
+    const searchParams = useSearchParams();
+    const params = new URLSearchParams(searchParams);
+    const path = usePathname();
 
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState(params.get("q") || "");
     const [isLoading, setIsLoading] = useState(false);
     const [reFetch, setReFetch] = useState(true);
     const [index, setIndex] = useState(-1);
@@ -22,20 +26,8 @@ const SearchBar = () => {
     const handleInput = (e: any) => {
         setInputValue(e.target.value);
     };
-    const router = useRouter();
-    const searchParams = useSearchParams();
-    const params = new URLSearchParams(searchParams);
-    const path = usePathname();
 
 
-
-
-
-    // useEffect(() => {
-    //     if (debounceValue.length > 1) {
-    //         alert()
-    //     }
-    // }, [debounceValue]);
 
 
 
@@ -45,7 +37,7 @@ const SearchBar = () => {
                 onSubmit={(e) => {
                     e.preventDefault();
                     params.set("q", inputValue);
-                    router.replace(`/search?${params}`)
+                    router.replace(`/search/${inputValue}?${params}`)
                 }}
             >
                 <input
