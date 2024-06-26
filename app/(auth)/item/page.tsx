@@ -1,5 +1,6 @@
 import { calculateDiscountedPrice } from '@/utils';
 import React, { Suspense } from 'react'
+import { ClipLoader } from 'react-spinners';
 async function fetchData(q: string) {
   try {
     const res = await fetch(`https://dummyjson.com/products/${q}`, {
@@ -30,7 +31,9 @@ const page = ({ searchParams }: { searchParams: any }) => {
 
   return (
 
-    <Suspense fallback={<LoadingComponent />}>
+    <Suspense fallback={<div className='text-blue-600 p-10 flex items-center justify-center '>
+      <ClipLoader className='w-6 h-6 text-blue-700' />
+    </div>}>
       <ServerComponentContent promise={data} />
     </Suspense>
   )

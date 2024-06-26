@@ -44,7 +44,7 @@ const SearchBar = () => {
             <form className="flex items-center relative"
                 onSubmit={(e) => {
                     e.preventDefault();
-                    params.set("query", inputValue);
+                    params.set("q", inputValue);
                     router.replace(`/search?${params}`)
                 }}
             >
@@ -67,7 +67,7 @@ const SearchBar = () => {
                         }
                     }}
                     placeholder="search user..."
-                    className="p-3 outline-none text-white  w-full bg-zinc-800"
+                    className="p-3 outline-none text-white  w-full bg-zinc-900 rounded-md"
                     value={inputValue}
                     onChange={handleInput}
                 />

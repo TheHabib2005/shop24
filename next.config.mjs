@@ -1,11 +1,12 @@
 /** @type {import('next').NextConfig} */
+import withPlaiceholder from "@plaiceholder/next";
 const nextConfig = {
   images: {
     domains: [
       "static-01.daraz.com.bd",
       "cdn.dummyjson.com",
       "https://devshopbd.com",
-      "localhost"
+      "images.unsplash.com"
     ],
   },
   experimental: {
@@ -13,4 +14,5 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+// export default nextConfig;
+export default withPlaiceholder(nextConfig);
