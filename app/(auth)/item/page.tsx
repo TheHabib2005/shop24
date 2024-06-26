@@ -1,3 +1,4 @@
+import TabsWrapper from '@/components/productDetails-components/TabsWrapper';
 import { calculateDiscountedPrice } from '@/utils';
 import React, { Suspense } from 'react'
 import { ClipLoader } from 'react-spinners';
@@ -45,8 +46,8 @@ async function ServerComponentContent({ promise }: { promise: any }) {
   const product = await promise;
   return (
 
-    <>
-      <div className="bg-white shadow-md rounded-lg p-6">
+    <div className='bg-zinc-950 '>
+      <div className="bg-zinc-950 shadow-md rounded-lg p-6">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 flex justify-center">
             <img
@@ -56,14 +57,14 @@ async function ServerComponentContent({ promise }: { promise: any }) {
             />
           </div>
           <div className="md:w-1/2 md:ml-6 mt-4 md:mt-0">
-            <h1 className="text-2xl font-bold text-gray-800 mb-2">
+            <h1 className="text-2xl font-bold text-zinc-200 mb-2">
               {product.title}
             </h1>
-            <p className="text-gray-600 mb-4">
+            <p className="text-zinc-400 mb-4">
               {product.description}
             </p>
             <div className="flex items-center mb-4">
-              <span className="text-xl font-semibold text-gray-800">
+              <span className="text-xl font-semibold text-zinc-300">
                 {product.price}
               </span>
               <span className="ml-2 text-gray-500 line-through">
@@ -75,64 +76,64 @@ async function ServerComponentContent({ promise }: { promise: any }) {
             </div>
             <div className="flex items-center mb-4">
               <span className="text-yellow-500 mr-2">{'★'.repeat(Math.floor(product.rating))}{'☆'.repeat(5 - Math.floor(product.rating))}</span>
-              <span className="text-gray-600">({product.rating.toFixed(2)})</span>
+              <span className="text-zinc-500">({product.rating.toFixed(2)})</span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Stock:</span>
+              <span className="text-zinc-300 font-semibold">Stock:</span>
               <span className="text-red-600">
                 {product.availabilityStatus} of ({product.stock}
                 left)
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Brand:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">Brand:</span>
+              <span className="text-zinc-500">
                 {product.brand}
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">SKU:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">SKU:</span>
+              <span className="text-zinc-500">
                 {product.sku}
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Weight:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">Weight:</span>
+              <span className="text-zinc-500">
                 {product.weight} oz
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Dimensions:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">Dimensions:</span>
+              <span className="text-zinc-500">
                 {product.dimensions.width} x {
                   product.dimensions.height} x {product.dimensions.depth}{" "}
                 cm
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Warranty:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">Warranty:</span>
+              <span className="text-zinc-500">
                 {product.warrantyInformation}
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Shipping:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">Shipping:</span>
+              <span className="text-zinc-500">
                 {product.shippingInformation}
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">Return Policy:</span>
-              <span className="text-gray-600">
+              <span className="text-zinc-300 font-semibold">Return Policy:</span>
+              <span className="text-zinc-500">
                 {product.returnPolicy}
               </span>
             </div>
             <div className="mb-4">
-              <span className="text-gray-800 font-semibold">
+              <span className="text-zinc-300 font-semibold">
                 Minimum Order Quantity:
               </span>
-              <span className="text-gray-600">
+              <span className="text-zinc-500">
                 {product.minimumOrderQuantity}
               </span>
             </div>
@@ -143,12 +144,12 @@ async function ServerComponentContent({ promise }: { promise: any }) {
         </div>
       </div>
 
-      <div className="bg-white shadow-md rounded-lg p-6 mt-6">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">Reviews</h2>
+      {/* <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+        <h2 className="text-2xl font-bold text-zinc-300 mb-4">Reviews</h2>
         <div className="space-y-4">
           {product.reviews.map((review: any) =>
             <div className="border-t pt-4" key={review.rating}>
-              <p className="text-gray-600">${review.comment}</p>
+              <p className="text-zinc-500">${review.comment}</p>
               <div className="flex justify-between items-center">
                 <span className="text-yellow-500">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
                 <span className="text-gray-500 text-sm">- {review.reviewerName}, {new Date(review.date).toISOString().split('T')[0]}</span>
@@ -156,9 +157,12 @@ async function ServerComponentContent({ promise }: { promise: any }) {
             </div>
           )}
         </div>
+      </div> */}
+      <div className='px-4'>
+        <TabsWrapper reviews={product.reviews} />
       </div>
 
-    </>
+    </div >
 
 
 

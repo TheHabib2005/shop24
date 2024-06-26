@@ -1,4 +1,4 @@
-
+"use client"
 import React, { useState } from 'react'
 import { Review } from '@/utils/interfaces'
 import RatingForm from './RatingForm'
