@@ -7,7 +7,7 @@ import { RiHome2Line } from "react-icons/ri";
 interface Props {
     category?: string
 }
-const BreadGrum: FC<Props> = ({ category, params }) => {
+const BreadGrum: FC<Props> = ({ category }) => {
     const path = usePathname();
     let breadGrum = path.split("/").filter(path => path);
     let lastIndex = breadGrum.length - 1;
