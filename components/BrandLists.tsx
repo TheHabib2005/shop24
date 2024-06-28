@@ -110,4 +110,4 @@ const BrandLists = () => {
     );
 };
 
-export default React.memo(BrandLists);
+export default BrandLists

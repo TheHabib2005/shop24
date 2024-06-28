@@ -5,7 +5,7 @@ export const delay = async (time: number) =>
 
 export const fetchProduct = async (searchQuery: string) => {
   let response = await fetch(
-    `https://dummyjson.com/products/search?q=${searchQuery}&limit=150`
+    `https://dummyjson.com/products/search?q=${searchQuery}&limit=50`
   );
   let result = await response.json();
   return result.products;

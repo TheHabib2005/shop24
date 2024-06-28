@@ -72,4 +72,4 @@ const Search = ({ searchParams }: { searchParams: any }) => {
     )
 }
 
-export default React.memo(Search)
+export default Search

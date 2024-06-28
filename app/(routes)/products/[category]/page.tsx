@@ -63,4 +63,4 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
     )
 }
 
-export default React.memo(CategoryPage)
+export default CategoryPage

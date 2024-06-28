@@ -49,4 +49,4 @@ const ProductListWrapper = () => {
     )
 }
 
-export default React.memo(ProductListWrapper)
+export default ProductListWrapper
