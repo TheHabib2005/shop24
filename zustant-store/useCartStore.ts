@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 interface ProductType {
@@ -41,8 +42,10 @@ export const useCartStore = create<CartItemType>()(
                 };
               }
             });
+            toast.success("Cart Updated successfully");
           } else {
             updatedCart.push(product);
+            toast.success("Product Added successfully");
           }
           set({ cart: updatedCart });
           set({
@@ -61,6 +64,7 @@ export const useCartStore = create<CartItemType>()(
               0
             ),
           });
+          toast.success("Product Remove successfully");
         },
         incrementQuantity: (id) => {
           let updatedCart = [...get().cart];
@@ -82,6 +86,7 @@ export const useCartStore = create<CartItemType>()(
               0
             ),
           });
+          toast.success("Cart Updated successfully");
         },
         decrementQuantity: (id) => {
           let updatedCart: any[] = [...get().cart];
@@ -94,6 +99,7 @@ export const useCartStore = create<CartItemType>()(
             } else {
               return product;
             }
+            toast.success("Cart Updated successfully");
           });
 
           set({ cart: updatedCart });

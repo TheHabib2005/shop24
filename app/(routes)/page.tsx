@@ -1,5 +1,6 @@
 import BestSellingProdCard from "@/components/BestSellingProdCard";
 import CategoryCard from "@/components/CategoryCard";
+import Link from "next/link";
 import { IoMdStar } from "react-icons/io";
 
 export default function Home() {
@@ -7,9 +8,9 @@ export default function Home() {
     <>
       <section className=" grid  gap-4  pb-4 md:grid-cols-6 md:grid-rows-2   mx-auto mt-5">
         <div className="md:col-span-4 md:row-span-2">
-          <a
+          <Link
             className="relative block aspect-square h-full w-full"
-            href="/product/smartphone/Samsung Galaxy Z Fold4 (12/256GB) Smartphone - Unofficial"
+            href="/products/smartphone/Samsung Galaxy Z Fold4 (12/256GB) Smartphone - Unofficial"
           >
             <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-800">
               <img
@@ -37,10 +38,10 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="md:col-span-2 md:row-span-1">
-          <a
+          <Link
             className="relative block aspect-square h-full w-full"
             href=""
           >
@@ -70,12 +71,12 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
         <div className="md:col-span-2 md:row-span-1">
-          <a
+          <Link
             className="relative block aspect-square h-full w-full"
-            href="/product/acme-cup"
+            href="/products/acme-cup"
           >
             <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-800">
               <img
@@ -102,7 +103,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </section>
 
@@ -111,7 +112,7 @@ export default function Home() {
           <h1 className="text-zinc-800 dark:text-white font-semibold text-2xl">Browse By Category</h1>
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 lg:py-10 py-5">
-          <a href="/product/smartphone">
+          <Link href="/products/smartphone">
             <div className="w-full h-[200px] py-5 dark:bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -128,8 +129,8 @@ export default function Home() {
                 smartPhone
               </p>
             </div>
-          </a>
-          <a href="/product/laptop">
+          </Link>
+          <Link href="/products/laptop">
             <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -146,8 +147,8 @@ export default function Home() {
                 laptop
               </p>
             </div>
-          </a>
-          <a href="/product/skincare">
+          </Link>
+          <Link href="/products/skincare">
             <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -164,8 +165,8 @@ export default function Home() {
                 skinCare
               </p>
             </div>
-          </a>
-          <a href="/product/sunglass">
+          </Link>
+          <Link href="/products/sunglass">
             <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -182,8 +183,8 @@ export default function Home() {
                 sunglass
               </p>
             </div>
-          </a>
-          <a href="/product/t-shirt">
+          </Link>
+          <Link href="/products/t-shirt">
             <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -200,8 +201,8 @@ export default function Home() {
                 t-shirt
               </p>
             </div>
-          </a>
-          <a href="/product/watch">
+          </Link>
+          <Link href="/products/watch">
             <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -218,7 +219,7 @@ export default function Home() {
                 watch
               </p>
             </div>
-          </a>
+          </Link>
         </div>
 
       </section>

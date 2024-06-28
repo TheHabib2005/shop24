@@ -122,7 +122,7 @@ const CartBar: FC = () => {
                                             </Link>
                                             <div className="flex h-16 flex-col justify-between">
                                                 <p className="flex justify-end space-y-2 text-right text-md">
-                                                    $ {product.price}
+                                                    ${product.price}
                                                     <span className="ml-1 inline"> </span>
                                                 </p>
                                                 <div className="ml-auto flex h-9 flex-row items-center rounded-full border border-neutral-200 dark:border-neutral-700">
@@ -228,7 +228,7 @@ const CartBar: FC = () => {
                                 <div className="mb-3 flex items-center justify-between border-b border-neutral-200 pb-1 pt-1 dark:border-neutral-700">
                                     <p>Total</p>
                                     <p className="text-right text-base text-black dark:text-white">
-                                        ৳ {totalAmount} <span className="ml-1 inline">BDT</span>
+                                        ${totalAmount.toFixed(2)} <span className="ml-1 inline">USD</span>
                                     </p>
                                 </div>
                             </div>

@@ -1,3 +1,4 @@
+import AddTocartButton from '@/components/AddTocartButton';
 import Images from '@/components/Image';
 import TabsWrapper from '@/components/productDetails-components/TabsWrapper';
 import { calculateDiscountedPrice } from '@/utils';
@@ -139,9 +140,7 @@ async function ServerComponentContent({ promise }: { promise: any }) {
                 {product.minimumOrderQuantity}
               </span>
             </div>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
-              Add to Cart
-            </button>
+            <AddTocartButton product={{ ...product, quantity: 1 }} />
           </div>
         </div>
       </div>

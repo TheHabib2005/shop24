@@ -8,10 +8,12 @@ import RatingStar from '@/components/RatingStar';
 import ResetFilter from '@/components/ResetFilter';
 import SortDropDownBox from '@/components/SortDropDownBox';
 import SpainerLoader from '@/components/SpainerLoader';
+import { delay } from '@/utils';
+
 import dynamic from 'next/dynamic';
 import React from 'react'
 
-const page = ({ params }) => {
+const CategoryPage = async ({ params }: { params: { category: string } }) => {
     const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
         loading: () => <SpainerLoader />,
     })
@@ -58,4 +60,4 @@ const page = ({ params }) => {
     )
 }
 
-export default page
+export default React.memo(CategoryPage)
