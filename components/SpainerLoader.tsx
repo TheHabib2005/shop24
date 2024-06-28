@@ -3,7 +3,7 @@ import { ClipLoader } from 'react-spinners'
 
 const SpainerLoader = () => {
     return (
-        <div className='w-full min-h-full flex items-center justify-center bg-transparent'>
+        <div className=' flex items-center justify-center bg-transparent'>
             <ClipLoader color='#2563EB' />
         </div>
     )

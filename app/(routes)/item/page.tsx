@@ -1,7 +1,10 @@
 import AddTocartButton from '@/components/AddTocartButton';
 import Images from '@/components/Image';
-import TabsWrapper from '@/components/productDetails-components/TabsWrapper';
+import SpainerLoader from '@/components/SpainerLoader';
+// import TabsWrapper from '@/components/productDetails-components/TabsWrapper';
 import { calculateDiscountedPrice } from '@/utils';
+import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import React, { Suspense } from 'react'
 import { ClipLoader } from 'react-spinners';
 async function fetchData(q: string) {
@@ -18,23 +21,15 @@ async function fetchData(q: string) {
   }
 }
 
-function LoadingComponent() {
-  return <div>Loading...</div>;
-}
 
-function ErrorComponent({ error }: { error: any }) {
-  return <div>Error: {error.message}</div>;
-}
 const page = ({ searchParams }: { searchParams: any }) => {
-
-  console.log(searchParams.id);
 
 
   const data = fetchData(searchParams.id);
 
   return (
 
-    <Suspense fallback={<div className=' p-10  bg-zinc-950 flex items-center justify-center  h-screen'>
+    <Suspense fallback={<div className=' p-10   flex items-center justify-center'>
       <ClipLoader className='w-6 h-6 text-blue-700' color='#1d4ed8 ' />
     </div>}>
       <ServerComponentContent promise={data} />
@@ -46,18 +41,24 @@ export default page
 
 async function ServerComponentContent({ promise }: { promise: any }) {
   const product = await promise;
+  const TabsWrapper = dynamic(() => import("@/components/productDetails-components/TabsWrapper"), {
+    loading: () => <SpainerLoader />,
+  })
   return (
 
-    <div className='bg-zinc-950 '>
-      <div className="bg-zinc-950 shadow-md rounded-lg p-6">
+    <div className=''>
+      <div className="">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 flex justify-center">
-            {/* <img
-              src={product.thumbnail}
-              alt={product.title}
-            // className="w-full h-auto rounded-lg"
-            /> */}
-            <Images src={product.thumbnail} />
+
+            <Image
+              width={5000000}
+              height={500000}
+              className='w-auto '
+              alt=''
+              loading='lazy'
+              src={product.thumbnail} />
+
           </div>
           <div className="md:w-1/2 md:ml-6 mt-4 md:mt-0">
             <h1 className="text-2xl font-bold text-zinc-200 mb-2">
@@ -145,20 +146,7 @@ async function ServerComponentContent({ promise }: { promise: any }) {
         </div>
       </div>
 
-      {/* <div className="bg-white shadow-md rounded-lg p-6 mt-6">
-        <h2 className="text-2xl font-bold text-zinc-300 mb-4">Reviews</h2>
-        <div className="space-y-4">
-          {product.reviews.map((review: any) =>
-            <div className="border-t pt-4" key={review.rating}>
-              <p className="text-zinc-500">${review.comment}</p>
-              <div className="flex justify-between items-center">
-                <span className="text-yellow-500">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</span>
-                <span className="text-gray-500 text-sm">- {review.reviewerName}, {new Date(review.date).toISOString().split('T')[0]}</span>
-              </div>
-            </div>
-          )}
-        </div>
-      </div> */}
+
       <div className='px-4'>
         <TabsWrapper reviews={product.reviews} />
       </div>

@@ -1,4 +1,4 @@
-import BrandLists from '@/components/BrandLists';
+// import BrandLists from '@/components/BrandLists';
 import BreadGrum from '@/components/BreadGrum'
 import CategoriesList from '@/components/CategoriesList';
 import CountProduct from '@/components/CountProduct';
@@ -17,6 +17,15 @@ const Search = ({ searchParams }: { searchParams: any }) => {
     const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
         loading: () => <SpainerLoader />,
     })
+
+
+    const BrandLists = dynamic(() => import('@/components/BrandLists'), {
+        loading: () => <SpainerLoader />,
+    })
+
+
+
+
     if (searchParams.q === "" || !searchParams.q) {
         redirect("/")
     }

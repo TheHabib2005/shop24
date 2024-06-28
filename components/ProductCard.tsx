@@ -2,7 +2,7 @@
 import { calculateDiscountedPrice, encryptObject } from "@/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import React, { FC } from "react";
 import { IoMdStar, IoMdStarHalf } from "react-icons/io";
 import Images from "./Image";
 interface IProps {
@@ -14,22 +14,11 @@ const ProductCard: FC<IProps> = ({ product }) => {
     return (
         <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  min-w-full bg-zinc-200 dark:bg-zinc-900/50 shadow-md mx-auto cursor-pointer col-span-1" onClick={() => {
             let text = encryptObject(product);
-
-
             localStorage.setItem("current-product", text);
-            // router.push(
-            //     `/product/${product.category}/${product.title.replace(
-            //         /\s/g,
-            //         "-"
-            //     )}?pid=${text.substring(0, 100)}`
-            // );
-
             window.open(`/item?id=${product.id}`)
-
         }}>
             <div
                 className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer"
-
             >
                 <Images src={product.thumbnail} />
                 <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium  text-white">
@@ -73,4 +62,4 @@ const ProductCard: FC<IProps> = ({ product }) => {
     );
 };
 
-export default ProductCard;
+export default React.memo(ProductCard);

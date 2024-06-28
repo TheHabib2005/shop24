@@ -1,4 +1,4 @@
-import BrandLists from '@/components/BrandLists';
+// import BrandLists from '@/components/BrandLists';
 import BreadGrum from '@/components/BreadGrum'
 import CategoriesList from '@/components/CategoriesList';
 import LayoutShiftIcon from '@/components/LayoutShiftIcon';
@@ -15,6 +15,9 @@ import React from 'react'
 
 const CategoryPage = async ({ params }: { params: { category: string } }) => {
     const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
+        loading: () => <SpainerLoader />,
+    })
+    const BrandLists = dynamic(() => import('@/components/BrandLists'), {
         loading: () => <SpainerLoader />,
     })
 

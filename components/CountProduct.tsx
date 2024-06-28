@@ -5,7 +5,7 @@ import React from 'react'
 const CountProduct = () => {
     const { products, isFetching } = useFetchProduct();
     return (
-        <>{isFetching ? "Loading..." : products.length || 0}</>
+        <>{isFetching ? "." : products.length || 0}</>
     )
 }
 
