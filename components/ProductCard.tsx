@@ -12,7 +12,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
     const router = useRouter();
 
     return (
-        <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  min-w-full bg-zinc-200 dark:bg-zinc-900 shadow-md mx-auto cursor-pointer col-span-1" onClick={() => {
+        <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  min-w-full bg-zinc-200 dark:bg-zinc-900/50 shadow-md mx-auto cursor-pointer col-span-1" onClick={() => {
             let text = encryptObject(product);
 
 

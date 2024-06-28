@@ -16,4 +16,4 @@ const ResetFilter = () => {
     )
 }
 
-export default ResetFilter
+export default React.memo(ResetFilter)

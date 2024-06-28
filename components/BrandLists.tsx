@@ -63,7 +63,7 @@ const BrandLists = () => {
     return (
         <>
             <div className="">
-                <div className=" border-t  border-neutral-700 px-4 py-3 select-none">
+                <div className=" border-t  border-neutral-700 px-4 py-3 mt-3 select-none">
                     <div className="flex items-center justify-between cursor-pointer">
                         <h1 className="text-zinc-800 dark:text-white">Choose Brand</h1>
 
@@ -110,4 +110,4 @@ const BrandLists = () => {
     );
 };
 
-export default BrandLists;
+export default React.memo(BrandLists);

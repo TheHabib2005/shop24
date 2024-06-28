@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={inter.className + ' dark:bg-zinc-950'}>
+            <body className={inter.className + ' dark:bg-black'}>
                 <NextTopLoader
                     color="#2563EB"
                     initialPosition={0.08}

@@ -49,7 +49,7 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
         setInputValue(item);
         setOpenSearchSuggestionPopup(false);
         params.set("q", item);
-        router.replace(`/product/search?${params}`);
+        router.replace(`/products/search?${params}`);
         if (inputRef.current) {
             inputRef.current.blur();
         }
@@ -77,7 +77,7 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         params.set("q", inputValue);
-        router.replace(`/product/search?${params}`);
+        router.replace(`/products/search?${params}`);
         setOpenSearchSuggestionPopup(false);
         if (inputRef.current) {
             inputRef.current.blur();

@@ -22,4 +22,4 @@ const PriceRange = () => {
     )
 }
 
-export default PriceRange
+export default React.memo(PriceRange)

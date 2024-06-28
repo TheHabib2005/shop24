@@ -56,7 +56,7 @@ async function ServerComponentContent({ promise }: { promise: any }) {
               alt={product.title}
             // className="w-full h-auto rounded-lg"
             /> */}
-            <Images src={product.images[0]} />
+            <Images src={product.thumbnail} />
           </div>
           <div className="md:w-1/2 md:ml-6 mt-4 md:mt-0">
             <h1 className="text-2xl font-bold text-zinc-200 mb-2">

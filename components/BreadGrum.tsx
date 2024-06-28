@@ -7,10 +7,13 @@ import { RiHome2Line } from "react-icons/ri";
 interface Props {
     category?: string
 }
-const BreadGrum: FC<Props> = ({ category }) => {
+const BreadGrum: FC<Props> = ({ category, params }) => {
     const path = usePathname();
     let breadGrum = path.split("/").filter(path => path);
     let lastIndex = breadGrum.length - 1;
+
+
+
 
     return (
         <div className='flex items-center gap-3 flex-wrap text-zinc-800 dark:text-white'>

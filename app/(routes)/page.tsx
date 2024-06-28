@@ -28,11 +28,11 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 flex w-full px-8 pb-4 @container/label lg:px-25 lg:pb-[15%]">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2  capitalize text-[15px] flex-grow pl-2 leading-[25px] tracking-tight">
-                    Samsung Galaxy Z Fold4 (12/256GB) Smartphone - Unofficial
+                    Google Team Black Color T-shirt
                   </h3>
                   <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                    ৳ 125,990
-                    <span className="ml-1 inline  @[275px]/label:inline">BDT</span>
+                    $ 125
+
                   </p>
                 </div>
               </div>
@@ -42,7 +42,7 @@ export default function Home() {
         <div className="md:col-span-2 md:row-span-1">
           <a
             className="relative block aspect-square h-full w-full"
-            href="/product/smartphone/iphone 15 Pro Max 256GB/512GB/1TB (USA-LL/A) Smartphone Unofficial"
+            href=""
           >
             <div className="group flex h-full w-full items-center justify-center overflow-hidden rounded-lg border bg-white hover:border-blue-600 dark:bg-black relative border-neutral-800">
               <img
@@ -53,16 +53,16 @@ export default function Home() {
                 decoding="async"
                 data-nimg={1}
                 className="transition duration-300 ease-in-out group-hover:scale-105 sm:w-[300px] w-[200px]"
-                src="./product-2.webp"
+                src="/checkshirt.png"
                 style={{ color: "transparent" }}
               />
               <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2  text-[15px] flex-grow pl-2 leading-none tracking-tight capitalize">
-                    iphone 15 Pro Max 256GB/512GB/1TB (USA-LL/A) Smartphone Unofficial
+                    CheckShirt for Man
                   </h3>
                   <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                    $174990
+                    $174
                     <span className="ml-1 inline hidden @[275px]/label:inline">
                       USD
                     </span>
@@ -85,16 +85,16 @@ export default function Home() {
                 decoding="async"
                 data-nimg={1}
                 className="transition duration-300 ease-in-out group-hover:scale-105 sm:w-[400px] w-[200px]"
-                src="./product-1.webp"
+                src="./puma-slider.png"
                 style={{ color: "transparent" }}
               />
               <div className="absolute bottom-0 left-0 flex w-full px-4 pb-4 @container/label">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2  text-[15px] flex-grow pl-2 leading-none tracking-tight capitalize">
-                    Bangladesh T20 World Cup Jersey
+                    Puma Slides for Man
                   </h3>
                   <p className="flex-none rounded-full bg-blue-600 p-2 text-white">
-                    $121100
+                    $121
                     <span className="ml-1 inline hidden @[275px]/label:inline">
                       USD
                     </span>
@@ -111,8 +111,8 @@ export default function Home() {
           <h1 className="text-zinc-800 dark:text-white font-semibold text-2xl">Browse By Category</h1>
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 lg:py-10 py-5">
-          <a href="/products/smartphone">
-            <div className="w-full h-[200px] py-5 bg-zinc-900 rounded-md flex flex-col gap-5 items-center justify-center">
+          <a href="/product/smartphone">
+            <div className="w-full h-[200px] py-5 dark:bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
                 loading="lazy"
@@ -129,8 +129,8 @@ export default function Home() {
               </p>
             </div>
           </a>
-          <a href="/products/laptop">
-            <div className="w-full h-[200px] py-5 bg-zinc-900 rounded-md flex flex-col gap-5 items-center justify-center">
+          <a href="/product/laptop">
+            <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
                 loading="lazy"
@@ -147,8 +147,8 @@ export default function Home() {
               </p>
             </div>
           </a>
-          <a href="/products/skincare">
-            <div className="w-full h-[200px] py-5 bg-zinc-900 rounded-md flex flex-col gap-5 items-center justify-center">
+          <a href="/product/skincare">
+            <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
                 loading="lazy"
@@ -165,8 +165,8 @@ export default function Home() {
               </p>
             </div>
           </a>
-          <a href="/products/sunglass">
-            <div className="w-full h-[200px] py-5 bg-zinc-900 rounded-md flex flex-col gap-5 items-center justify-center">
+          <a href="/product/sunglass">
+            <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
                 loading="lazy"
@@ -183,8 +183,8 @@ export default function Home() {
               </p>
             </div>
           </a>
-          <a href="/products/t-shirt">
-            <div className="w-full h-[200px] py-5 bg-zinc-900 rounded-md flex flex-col gap-5 items-center justify-center">
+          <a href="/product/t-shirt">
+            <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
                 loading="lazy"
@@ -201,8 +201,8 @@ export default function Home() {
               </p>
             </div>
           </a>
-          <a href="/products/watch">
-            <div className="w-full h-[200px] py-5 bg-zinc-900 rounded-md flex flex-col gap-5 items-center justify-center">
+          <a href="/product/watch">
+            <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
                 loading="lazy"

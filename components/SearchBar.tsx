@@ -37,7 +37,7 @@ const SearchBar = () => {
                 onSubmit={(e) => {
                     e.preventDefault();
                     params.set("q", inputValue);
-                    router.replace(`/search/${inputValue}?${params}`)
+                    router.replace(`/search?${params}`)
                 }}
             >
                 <input

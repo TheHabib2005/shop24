@@ -11,17 +11,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "primary-color": "",
-        "secondary-color": "#2563EB",
-        "tertiary-color": "",
-        "quaternary-color": "",
-        "quinary-color": "",
-        "senary-color": "",
+        primary: "",
+        secondary: "#2563EB",
       },
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      backgroundColor: {
+        primary: "#000000",
+        secondary: "bg-zinc-900",
       },
     },
   },

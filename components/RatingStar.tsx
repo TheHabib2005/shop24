@@ -60,4 +60,4 @@ const RatingStar = () => {
     );
 };
 
-export default RatingStar;
+export default React.memo(RatingStar);

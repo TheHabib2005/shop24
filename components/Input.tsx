@@ -17,7 +17,7 @@ const Input: FC<Iprops> = ({ onChange, inputRef, onClick, handleSubmit, value })
                 ref={inputRef}
                 onChange={onChange}
                 type="text"
-                className="  placeholder:text-zinc-400 font-semibold placeholder::text-sm focus:outline-none w-full py-[10px] px-4 rounded-lg border  text-zinc-600 dark:bg-zinc-900 dark:border-zinc-900 dark:text-zinc-300"
+                className="  placeholder:text-zinc-400 font-semibold placeholder::text-sm focus:border-zinc-800 focus:outline-none w-full py-[10px] px-4 rounded-lg border  text-zinc-600 dark:bg-zinc-950 dark:border-zinc-950 dark:text-zinc-300"
                 placeholder="Search for Products..."
                 value={value}
             />
@@ -25,4 +25,4 @@ const Input: FC<Iprops> = ({ onChange, inputRef, onClick, handleSubmit, value })
     );
 };
 
-export default Input;
+export default React.memo(Input)

@@ -92,4 +92,4 @@ const SortDropDownBox = () => {
     );
 };
 
-export default SortDropDownBox;
+export default React.memo(SortDropDownBox);
