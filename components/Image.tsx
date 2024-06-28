@@ -1,5 +1,5 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import { Blurhash } from 'react-blurhash';
@@ -9,22 +9,14 @@ const LazyImage = ({ src }: { src: string }) => {
         triggerOnce: true,
         threshold: 0.1,
     });
-    const [isImageLoaded, setIsImageLoaded] = useState(false);
 
-    useEffect(() => {
-        const img = new window.Image();
-        img.onload = () => {
-            setIsImageLoaded(true);
-        }
-        img.src = src;
-    }, [src])
 
 
     return (
         <div ref={ref} className="relative w-full h-64">
-            {inView && isImageLoaded ? (
-                <Image
-                    fill
+            {inView ? (
+                <img
+
                     src={src}
                     alt="product.title"
                     className="w-auto h-auto"
