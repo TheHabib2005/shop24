@@ -5,12 +5,9 @@ import dynamic from "next/dynamic"
 import SpainerLoader from './SpainerLoader';
 import ProductCardSkeleton from './ProductCardSkelection';
 import { ClipLoader } from 'react-spinners';
+import ProductCard from './ProductCard';
 
 const ProductListWrapper = () => {
-
-    const ProductCard = dynamic(() => import("./ProductCard"), {
-        loading: () => <ProductCardSkeleton />,
-    })
 
     const { products, isLoading, isError, error, isFetching } = useFetchProduct()
     if (isFetching) {

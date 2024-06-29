@@ -6,6 +6,7 @@ import TranstackQueryProvider from "@/components/TranstackQueryProvider";
 import NextTopLoader from "nextjs-toploader";
 import ShoppingCartBar from "@/components/ShoppingCartBar";
 import { Toaster } from "react-hot-toast";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +45,7 @@ export default function RootLayout({
                         <Header />
                         <ShoppingCartBar />
                         {children}
+                        <Footer />
                     </main>
                 </TranstackQueryProvider>
 

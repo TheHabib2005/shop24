@@ -1,4 +1,5 @@
 // import BrandLists from '@/components/BrandLists';
+import BrandLists from '@/components/BrandLists';
 import BreadGrum from '@/components/BreadGrum'
 import CategoriesList from '@/components/CategoriesList';
 import CountProduct from '@/components/CountProduct';
@@ -14,14 +15,10 @@ import { redirect } from 'next/navigation';
 import React from 'react'
 
 const Search = ({ searchParams }: { searchParams: any }) => {
-    const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
-        loading: () => <SpainerLoader />,
-    })
 
 
-    const BrandLists = dynamic(() => import('@/components/BrandLists'), {
-        loading: () => <SpainerLoader />,
-    })
+
+
 
 
 
@@ -42,7 +39,7 @@ const Search = ({ searchParams }: { searchParams: any }) => {
 
             <div className='flex items-start gap-4    overflow-x-hidden font-semibold' >
 
-                <div className=' 2xl:w-[25%] md:w-[30%] lg:block hidden bg-zinc-100 dark:bg-zinc-950/50 rounded-md pt-4'>
+                <div className=' 2xl:w-[25%] md:w-[30%] lg:block hidden bg-black rounded-md pt-4'>
                     <header className='flex items-center justify-between px-4 '>
                         <h1 className='text-zinc-800 dark:text-white font-semibold'>Filters</h1>
                         <ResetFilter />
@@ -52,16 +49,9 @@ const Search = ({ searchParams }: { searchParams: any }) => {
                     <RatingStar />
                     <PriceRange />
                 </div>
-                <div className=' 2xl:w-[75%]  w-full bg-zinc-100 dark:bg-zinc-950/50  rounded-md pb-5 px-4'>
-                    <header className="flex items-center justify-between  mt-3">
-                        {/* <BreadGrum /> */}
-                        <div></div>
-                        <div className='flex items-center justify-between '>
-                            <LayoutShiftIcon />
-                            <SortDropDownBox />
-                        </div>
-                    </header>
-                    <ProductList />
+                <div className=' 2xl:w-[75%]  w-full bg-black rounded-md pb-5 px-4'>
+
+                    <ProductListWrapper />
 
                     {/* <Pagination paginationItems={6} /> */}
                 </div>

@@ -1,8 +1,6 @@
-"use client"
-import React, { useCallback, useEffect, useState } from 'react';
-import { useInView } from 'react-intersection-observer';
-import Image from 'next/image';
-import { Blurhash } from 'react-blurhash';
+"use client";
+import React from "react";
+import { useInView } from "react-intersection-observer";
 
 const LazyImage = ({ src }: { src: string }) => {
     const { ref, inView } = useInView({
@@ -10,27 +8,12 @@ const LazyImage = ({ src }: { src: string }) => {
         threshold: 0.1,
     });
 
-
-
     return (
         <div ref={ref} className="relative w-full h-64">
             {inView ? (
-                <img
-
-                    src={src}
-                    alt="product.title"
-                    className="w-auto h-auto"
-                />
+                <img src={src} alt="product.title" className="w-auto h-auto m-auto" />
             ) : (
-                <div className="min-w-full bg-red-400 min-h-full">
-                    {/* <Blurhash
-                        hash="LKO2:N%2Tw=w]~RBVZRi};RPxuwH"
-                        className="min-w-full min-h-full"
-                        resolutionX={32}
-                        resolutionY={32}
-                        punch={1}
-                    /> */}
-                </div>
+                <div className="min-w-full bg-red-400 min-h-full"></div>
             )}
         </div>
     );

@@ -1,8 +1,9 @@
 import React from 'react'
+import { ClipLoader } from 'react-spinners'
 
 const Loading = () => {
     return (
-        <div className='text-xl text-zinc-300 font-bold text-center'>One Moment Wait...</div>
+        <div className='flex items-center justify-center p-5'>   <ClipLoader color='#1d4ed8 ' /></div>
     )
 }
 
