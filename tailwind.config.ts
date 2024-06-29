@@ -19,6 +19,14 @@ const config: Config = {
         secondary: "bg-zinc-900",
       },
     },
+
+    keyframes: {
+      shimmer: {
+        "100%": {
+          transform: "translateX(100%)",
+        },
+      },
+    },
   },
   plugins: [],
 };

@@ -52,3 +52,32 @@
     clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
   }
 }
+
+.skeleton-container {
+  padding: 10px;
+  background-color: #0c0c0c; /* Replace with your desired background color */
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+.skeleton-content {
+  animation: skeleton-animation 1.5s ease-in-out infinite;
+}
+
+.skeleton-element {
+  background-color: #1d1d1d; /* Replace with your desired skeleton color */
+  animation: skeleton-animation 1.5s ease-in-out infinite;
+}
+
+@keyframes skeleton-animation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}

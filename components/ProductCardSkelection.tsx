@@ -5,13 +5,19 @@ import SpainerLoader from './SpainerLoader';
 const ProductCardSkeleton = () => {
     return (
 
-        <div className=" rounded overflow-hidden shadow-lg animate-pulse">
-            <div className="h-[250px] rounded-sm bg-zinc-500" />
-            <div className="mt-4">
-                <div className="h-8 bg-zinc-950 mb-2 rounded-md" />
-                <div className="h-6 bg-zinc-950  rounded-md" />
+        <div className="skeleton-container">
+            <div className="skeleton-content">
+                <div className="h-40 rounded-lg skeleton-element"></div>
+                <div className="space-y-3 mt-3">
+                    <div className="h-3 w-3/5 rounded-lg skeleton-element"></div>
+                    <div className="h-3 w-4/5 rounded-lg skeleton-element"></div>
+                    <div className="h-3 w-2/5 rounded-lg skeleton-element"></div>
+                    <div className="flex items-center gap-5">
+                        <div className="h-5 w-2/5 rounded-lg skeleton-element"></div>
+                        <div className="h-5 w-2/5 rounded-lg skeleton-element"></div>
+                    </div>
+                </div>
             </div>
-
         </div>
 
     );

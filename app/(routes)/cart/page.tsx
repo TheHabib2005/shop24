@@ -4,10 +4,15 @@ import { useCartStore } from "@/zustant-store/useCartStore";
 import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+import { animated, useSpring } from 'react-spring';
 
 const CartPage = () => {
   const { cart, totalAmount } = useCartStore();
-
+  const fadeStyle = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    config: { duration: 500 },
+  });
   return (
     <section className="w-full px-4 ">
       {cart.length === 0 ? (
@@ -66,6 +71,26 @@ const CartPage = () => {
           </div>
         </div>
       )}
+
+      {/* <div className="space-y-5 rounded-2xl bg-zinc-950 p-4 w-[400px]  
+                    overflow-hidden
+                    shadow-xl shadow-black/5
+                    before:border-t before:border-zinc-950"  >
+        <div className="h-40 rounded-lg bg-zinc-900/50"></div>
+        <div className="space-y-3">
+          <div className="h-3 w-3/5 rounded-lg bg-rose-100/10"></div>
+          <div className="h-3 w-4/5 rounded-lg bg-rose-100/20"></div>
+          <div className="h-3 w-2/5 rounded-lg bg-rose-100/20"></div>
+          <div className="flex items-center gap-5">
+            <div className="h-5 w-2/5 rounded-lg bg-rose-100/20"></div>
+            <div className="h-5 w-2/5 rounded-lg bg-rose-100/20"></div>
+
+
+          </div>
+        </div>
+      </div> */}
+
+
     </section>
   );
 };
