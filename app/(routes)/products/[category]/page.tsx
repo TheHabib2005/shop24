@@ -45,7 +45,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                     <RatingStar />
                     <PriceRange />
                 </div>
-                <div className=' 2xl:w-[75%]  w-full  bg-black  rounded-md pb-5 px-4'>
+                <div className=' 2xl:w-[75%]  w-full  bg-black  rounded-md pb-5 '>
                     {/* <header className="flex items-center justify-between  mt-3">
                     
                         <div></div>

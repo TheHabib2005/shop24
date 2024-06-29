@@ -37,7 +37,7 @@ export default function RootLayout({
                     showAtBottom={false}
                 />
                 <TranstackQueryProvider>
-                    <main className="max-w-[1440px] mx-auto px-6 w-[100%]">
+                    <main className="max-w-[1440px] mx-auto md:px-6 px-3 w-[100%]">
                         <Toaster
                             position="top-center"
                             reverseOrder={false}

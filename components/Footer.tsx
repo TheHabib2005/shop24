@@ -17,7 +17,7 @@ const Footer = () => {
                             >
                                 <div className="gi-footer-widget gi-footer-company flex flex-col">
                                     <img
-                                        src="./myshopbd-dark.png"
+                                        src="/myshopbd-dark.png"
                                         className="gi-footer-logo max-w-[200px] max-[767px]:max-w-[170px]  mb-[30px]"
                                         alt="footer logo"
                                     />

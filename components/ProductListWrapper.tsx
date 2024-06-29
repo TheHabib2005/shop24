@@ -11,7 +11,7 @@ const ProductListWrapper = () => {
 
     const { products, isLoading, isError, error, isFetching } = useFetchProduct()
     if (isFetching) {
-        return <div className='h-screen p-10  bg-transparent flex justify-center'>
+        return <div className='h-screen p-10   flex justify-center absolute top-0 left-0 w-full z-10 bg-zinc-900/50 opacity-60 items-center'>
             <ClipLoader className='w-6 h-6 text-blue-700' color='#1d4ed8 ' />
         </div>
     }

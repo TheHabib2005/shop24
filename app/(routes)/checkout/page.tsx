@@ -9,8 +9,8 @@ import React from "react";
 const CheckoutPage = () => {
     const { cart, totalAmount } = useCartStore()
     return (
-        <div className="font-[sans-serif] bg-zinc-950  h-screen">
-            <div className="w-full   lg:grid  flex flex-col-reverse lg:grid-cols-7  h-screen overflow-y-scroll">
+        <div className="font-[sans-serif] bg-black  ">
+            <div className="w-full   lg:grid  flex flex-col-reverse lg:grid-cols-7  ">
                 <div className="col-span-4  p-6 max-w-full ">
                     <h1 className="text-2xl my-5 text-white font-semibold  text-center">
                         Checkout Form
