@@ -9,12 +9,8 @@ import ProductCard from './ProductCard';
 import { animated, useSpring } from 'react-spring';
 
 const ProductListWrapper = () => {
-    const fadeStyle = useSpring({
-        from: { opacity: 0 },
-        to: { opacity: 1 },
-        config: { duration: 500 },
-    });
-    const { products, isLoading, isError, error, isFetching } = useFetchProduct()
+
+    const { products, isError, error, isFetching } = useFetchProduct()
     if (isFetching) {
         return <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-3   pb-5   ">
             {

@@ -15,7 +15,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
             <div className="relative m-1 flex  flex-col overflow-hidden rounded-lg  min-w-full bg-zinc-200 dark:bg-zinc-950 shadow-md mx-auto cursor-pointer col-span-1" onClick={() => {
                 let text = encryptObject(product);
                 localStorage.setItem("current-product", text);
-                window.open(`/item?id=${product.id}`)
+                window.open(`/products/item?id=${product.id}`)
             }}>
                 <div
                     className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl cursor-pointer justify-center items-center "

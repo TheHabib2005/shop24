@@ -3,7 +3,7 @@ import { fetchProduct } from "@/utils";
 import { Product } from "@/utils/interfaces";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useQuery } from "react-query";
+import { useQuery, } from "react-query";
 
 const useFetchProduct = () => {
     const [products, setProducts] = useState<Product[]>([]);
@@ -14,10 +14,10 @@ const useFetchProduct = () => {
     const { isLoading, isError, isFetching, error, refetch, status } = useQuery({
         queryKey: ["fetch-product", searchQuery, params.toString()],
         queryFn: () => fetchProduct(searchQuery ? searchQuery : ""),
-
         // Callbacks
         onSuccess: (data) => {
             setProducts(data);
+            localStorage.setItem("data", JSON.stringify(data));
         },
         onError: (error) => {
             console.error("Error fetching products:", error);
