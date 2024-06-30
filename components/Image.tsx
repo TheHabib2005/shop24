@@ -12,7 +12,7 @@ const LazyImage = ({ src }: { src: string }) => {
     const [show, setshow] = useState(false);
     return (
         <div ref={ref} className="relative w-full h-64">
-            {inView ? (
+            {inView && (
                 (show ? <img src={src} alt="product.title" className="w-auto h-auto m-auto" /> : <div className="w-full h-full relative">
                     <Blurhash
                         hash="LKEVpS00?^xt4n-=D*ad4.%MMxj?"
@@ -23,11 +23,13 @@ const LazyImage = ({ src }: { src: string }) => {
                     />
 
                 </div>)
-            ) : (
-                <div className="min-w-full bg-zinc-900 min-h-full flex items-center justify-center">
-                    <ClipLoader size={30} color="#2563EB" />
-                </div>
-            )}
+            )
+                //  : (
+                //     <div className="min-w-full bg-zinc-900 min-h-full flex items-center justify-center">
+                //         <ClipLoader size={30} color="#2563EB" />
+                //     </div>
+                // )
+            }
             {inView && <img src={src} onLoad={() => {
                 setTimeout(() => {
                     setshow(true)
