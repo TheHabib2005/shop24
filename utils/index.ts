@@ -56,3 +56,7 @@ export function calculateDiscountedPrice<T extends number>(
   // Return the discounted price
   return discountedPrice;
 }
+
+export const updateCartdb = (data: any) => {
+  console.log("data update");
+};

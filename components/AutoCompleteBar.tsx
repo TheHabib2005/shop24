@@ -9,6 +9,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { fetchProduct } from "@/utils";
 import SearchSuggestionList from "./searchSuggestionList";
 import { Product } from "@/utils/interfaces";
+import { ClipLoader } from "react-spinners";
 
 interface IProps {
     responsiveMode: boolean;
@@ -131,7 +132,9 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
                 className="w-10 h-10 absolute right-0 rounded-full flex items-center justify-center text-zinc-600 dark:text-zinc-500 top-[8%]"
             >
                 {isFetching && (
-                    <div className="animate-spin rounded-full h-5 w-5 border-t-2 border-gray-200" aria-live="polite" aria-busy="true"></div>
+                    <div className="flex items-center justify-center w-full h-full bg-zinc-950">
+                        <ClipLoader size={20} color="#fff" />
+                    </div>
                 )}
                 {!isFetching && inputValue === "" && (
                     <svg

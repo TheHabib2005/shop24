@@ -1,3 +1,4 @@
+import { updateCartdb } from "@/utils";
 import toast from "react-hot-toast";
 import { create } from "zustand";
 import { devtools, persist } from "zustand/middleware";
@@ -54,6 +55,8 @@ export const useCartStore = create<CartItemType>()(
               0
             ),
           });
+
+          updateCartdb(updatedCart);
         },
         removeFromCart: (id) => {
           let updatedCart = [...get().cart].filter((c) => c.id !== id);
