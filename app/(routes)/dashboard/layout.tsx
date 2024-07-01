@@ -1,7 +1,7 @@
 import Link from "next/link";
-import React from "react";
+import React, { ReactNode } from "react";
 
-const layout = ({ children }) => {
+const layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="text-white flex items-center gap-5">
 
