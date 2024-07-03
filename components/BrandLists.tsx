@@ -38,7 +38,9 @@ const BrandLists = () => {
         setSelectedBrand(selectBrand);
         if (selectBrand.length > 0) {
             params.set("brands", selectBrand.join(" "));
-            router.replace(`${path}?${params}`);
+            // router.replace(`${path}?${params}`);
+            window.location.href = `${path}?${params}`
+
         } else {
             params.delete("brands");
             router.replace(`${path}?${params}`);

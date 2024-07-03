@@ -4,16 +4,16 @@ import { Blurhash } from "react-blurhash";
 import { useInView } from "react-intersection-observer";
 import { ClipLoader } from "react-spinners";
 
-const LazyImage = ({ src }: { src: string }) => {
+const LazyImage = ({ src, className }: { src: string, className: string }) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1,
     });
     const [show, setshow] = useState(false);
     return (
-        <div ref={ref} className="relative w-full h-64">
+        <div ref={ref} className={`${className || "relative w-full h-64"}`}>
             {inView && (
-                (show ? <img src={src} alt="product.title" className="w-auto h-auto m-auto" /> : <div className="w-full h-full relative">
+                (show ? <img src={"/imageedit_2_3594380782.jpg"} alt="product.title" className="w-auto h-auto m-auto" /> : <div className="w-full h-full relative">
                     <Blurhash
                         hash="LKEVpS00?^xt4n-=D*ad4.%MMxj?"
                         resolutionX={32}
@@ -24,13 +24,8 @@ const LazyImage = ({ src }: { src: string }) => {
 
                 </div>)
             )
-                //  : (
-                //     <div className="min-w-full bg-zinc-900 min-h-full flex items-center justify-center">
-                //         <ClipLoader size={30} color="#2563EB" />
-                //     </div>
-                // )
             }
-            {inView && <img src={src} onLoad={() => {
+            {inView && <img src={"/imageedit_2_3594380782.jpg"} onLoad={() => {
                 setTimeout(() => {
                     setshow(true)
                 }, 200);

@@ -1,8 +1,7 @@
-import BestSellingProdCard from "@/components/BestSellingProdCard";
-import CategoryCard from "@/components/CategoryCard";
-import Link from "next/link";
-import { IoMdStar } from "react-icons/io";
 
+import LazyImage from "@/components/Image";
+import Image from "next/image";
+import Link from "next/link";
 export default function Home() {
   return (
     <>
@@ -16,16 +15,15 @@ export default function Home() {
               <img
                 alt=""
                 loading="lazy"
-                width={500}
-                height={300}
                 decoding="async"
                 data-nimg={1}
                 src="./google-tshirt.png"
-                className="transition duration-300 ease-in-out group-hover:scale-105 sm:w-[500px] w-[200px] sm:w-[300px] w-[200px]"
+                className="transition duration-300 ease-in-out group-hover:scale-105 sm:w-[500px] w-[350px] "
 
 
                 style={{ color: "transparent" }}
               />
+              {/* <LazyImage src="" /> */}
               <div className="absolute bottom-0 left-0 flex w-full px-8 pb-4 @container/label lg:px-25 lg:pb-[15%]">
                 <div className="flex items-center rounded-full border bg-white/70 p-1 text-xs font-semibold text-black backdrop-blur-md dark:border-neutral-800 dark:bg-black/70 dark:text-white">
                   <h3 className="mr-4 line-clamp-2  capitalize text-[15px] flex-grow pl-2 leading-[25px] tracking-tight">
@@ -39,7 +37,7 @@ export default function Home() {
               </div>
             </div>
           </Link>
-        </div>
+        </div >
         <div className="md:col-span-2 md:row-span-1">
           <Link
             className="relative block aspect-square h-full w-full"
@@ -105,14 +103,14 @@ export default function Home() {
             </div>
           </Link>
         </div>
-      </section>
+      </section >
 
       <section className="py-10">
         <div>
           <h1 className="text-zinc-800 dark:text-white font-semibold text-2xl">Browse By Category</h1>
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5 lg:py-10 py-5">
-          <Link href="/products/smartphone">
+          <a href="/products/smartphone">
             <div className="w-full h-[200px] py-5 dark:bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img
                 alt="image"
@@ -129,7 +127,7 @@ export default function Home() {
                 smartPhone
               </p>
             </div>
-          </Link>
+          </a>
           <Link href="/products/laptop">
             <div className="w-full h-[200px] py-5 bg-zinc-950 rounded-md flex flex-col gap-5 items-center justify-center">
               <img

@@ -8,6 +8,7 @@ import PriceRange from '@/components/PriceRange';
 import ProductListWrapper from '@/components/ProductListWrapper';
 import RatingStar from '@/components/RatingStar';
 import ResetFilter from '@/components/ResetFilter';
+import Server from '@/components/ServerCom';
 import SortDropDownBox from '@/components/SortDropDownBox';
 import SpainerLoader from '@/components/SpainerLoader';
 import { delay } from '@/utils';
@@ -15,7 +16,7 @@ import { delay } from '@/utils';
 import dynamic from 'next/dynamic';
 import React from 'react'
 
-const CategoryPage = async ({ params }: { params: { category: string } }) => {
+const CategoryPage = async ({ params, searchParams }: { params: { category: string } }) => {
 
     // const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
     //     loading: () => <SpainerLoader />,
@@ -47,7 +48,7 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                     <PriceRange />
                 </div>
                 <div className=' 2xl:w-[75%]  w-full  bg-black  rounded-md pb-5 '>
-                    <header className="flex items-center justify-between  mt-3">
+                    {/* <header className="flex items-center justify-between  mt-3">
 
                         <div></div>
                         <div className='flex items-center justify-between '>
@@ -55,7 +56,8 @@ const CategoryPage = async ({ params }: { params: { category: string } }) => {
                             <SortDropDownBox />
                         </div>
                     </header>
-                    <ProductListWrapper />
+                    <ProductListWrapper /> */}
+                    <Server searchParams={searchParams} />
 
                     {/* <Pagination paginationItems={6} /> */}
                 </div>

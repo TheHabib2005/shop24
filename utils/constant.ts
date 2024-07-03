@@ -75,3 +75,26 @@ export const productCategories = [
     isChecked: false,
   },
 ];
+
+export const accountMenus = [
+  {
+    id: 1,
+    title: "Profile",
+    path: "/my-account",
+  },
+  {
+    id: 2,
+    title: "orders",
+    path: "/my-account/orders",
+  },
+  {
+    id: 3,
+    title: "wishList",
+    path: "/my-account/wishlist",
+  },
+  {
+    id: 4,
+    title: "Manage Account",
+    path: "/my-account/manage-account",
+  },
+];
