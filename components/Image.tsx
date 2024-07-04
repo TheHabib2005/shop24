@@ -4,7 +4,7 @@ import { Blurhash } from "react-blurhash";
 import { useInView } from "react-intersection-observer";
 import { ClipLoader } from "react-spinners";
 
-const LazyImage = ({ src, className }: { src: string, className: string }) => {
+const LazyImage = ({ src, className }: { src: string, className?: string }) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1,
