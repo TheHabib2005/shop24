@@ -13,7 +13,7 @@ const LazyImage = ({ src, className }: { src: string, className: string }) => {
     return (
         <div ref={ref} className={`${className || "relative w-full h-64"}`}>
             {inView && (
-                (show ? <img src={"/imageedit_2_3594380782.jpg"} alt="product.title" className="w-auto h-auto m-auto" /> : <div className="w-full h-full relative">
+                (show ? <img src={src || "/imageedit_2_3594380782.jpg"} alt="product.title" className="w-auto h-auto m-auto" /> : <div className="w-full h-full relative">
                     <Blurhash
                         hash="LKEVpS00?^xt4n-=D*ad4.%MMxj?"
                         resolutionX={32}
@@ -25,7 +25,7 @@ const LazyImage = ({ src, className }: { src: string, className: string }) => {
                 </div>)
             )
             }
-            {inView && <img src={"/imageedit_2_3594380782.jpg"} onLoad={() => {
+            {inView && <img src={src || "/imageedit_2_3594380782.jpg"} onLoad={() => {
                 setTimeout(() => {
                     setshow(true)
                 }, 200);

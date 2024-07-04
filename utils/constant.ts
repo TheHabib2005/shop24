@@ -40,12 +40,12 @@ export const smartPhoneBrandList = [
 export const productCategories = [
   {
     id: Math.round(Math.random() * 200),
-    name: "smartphone",
+    name: "laptops",
     isChecked: false,
   },
   {
     id: Math.round(Math.random() * 200),
-    name: "laptop",
+    name: "beauty",
     isChecked: false,
   },
   {

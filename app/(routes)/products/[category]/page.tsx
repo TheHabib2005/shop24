@@ -2,6 +2,7 @@
 import BrandLists from '@/components/BrandLists';
 import BreadGrum from '@/components/BreadGrum'
 import CategoriesList from '@/components/CategoriesList';
+import CategoryLists from '@/components/CategoryLists';
 import CountProduct from '@/components/CountProduct';
 import LayoutShiftIcon from '@/components/LayoutShiftIcon';
 import PriceRange from '@/components/PriceRange';
@@ -16,7 +17,7 @@ import { delay } from '@/utils';
 import dynamic from 'next/dynamic';
 import React from 'react'
 
-const CategoryPage = async ({ params, searchParams }: { params: { category: string } }) => {
+const CategoryPage = async ({ params, searchParams }: { params: { category: string }, searchParams: any }) => {
 
     // const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
     //     loading: () => <SpainerLoader />,
@@ -43,12 +44,12 @@ const CategoryPage = async ({ params, searchParams }: { params: { category: stri
                         <ResetFilter />
                     </header>
 
-                    <BrandLists />
+                    <CategoriesList />
                     <RatingStar />
                     <PriceRange />
                 </div>
                 <div className=' 2xl:w-[75%]  w-full  bg-black  rounded-md pb-5 '>
-                    {/* <header className="flex items-center justify-between  mt-3">
+                    <header className="flex items-center justify-between  mt-3">
 
                         <div></div>
                         <div className='flex items-center justify-between '>
@@ -56,7 +57,7 @@ const CategoryPage = async ({ params, searchParams }: { params: { category: stri
                             <SortDropDownBox />
                         </div>
                     </header>
-                    <ProductListWrapper /> */}
+                    {/* <ProductListWrapper /> */}
                     <Server searchParams={searchParams} />
 
                     {/* <Pagination paginationItems={6} /> */}

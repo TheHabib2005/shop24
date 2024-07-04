@@ -1,32 +1,14 @@
-import BrandLists from '@/components/BrandLists';
-import ProductCard from '@/components/ProductCard';
-import { fetchProduct } from '@/utils'
-import React from 'react'
+// pages/index.jsx
+// import MyComponent from '@/components/MyComponent.server';
+import dynamic from 'next/dynamic';
 
-const Server = async ({ searchParams }: { searchParams: any }) => {
-    const products = await fetchProduct(searchParams.q || "");
+const MyComponent = dynamic(() => import('@/components/MyComponent.server'), { ssr: true });
 
+export default function Home() {
     return (
-        <>
-
-
-            <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-3   pb-5   ">
-                {
-                    products.length > 0 && products?.map(prod => {
-                        return <ProductCard key={prod.id} product={prod} />
-                    })
-                }
-            </div>
-            {
-                products.length === 0 &&
-                <div className='  flex items-center justify-center  '>
-                    <h1 className='font-bold text-xl capitalize text-zinc-400'>No Product Found</h1>
-                </div>
-            }
-
-
-        </>
-    )
+        <div className='text-white'>
+            <h1>Welcome to Next.js 14</h1>
+            <MyComponent />
+        </div>
+    );
 }
-
-export default Server

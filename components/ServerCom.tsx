@@ -1,11 +1,36 @@
 import BrandLists from '@/components/BrandLists';
 import ProductCard from '@/components/ProductCard';
-import { fetchProduct } from '@/utils'
-import { Product } from '@/utils/interfaces';
+
 import React from 'react'
 
+const fetchProduct = async (url: string) => {
+    let response = await fetch(url,
+        {
+            cache: "force-cache",
+
+            // next:{revalidate:5}
+        }
+    );
+    let result = await response.json();
+    return result.products;
+};
+
 const Server = async ({ searchParams }: { searchParams: any }) => {
-    const products = await fetchProduct(searchParams.q || "");
+
+
+    let url = `https://dummyjson.com/products/search?q=${searchParams.q || ""}&limit=9`;
+
+    // if (searchParams.q) {
+    //     url = `https://dummyjson.com/products/search?q=${searchParams.q}&limit=9`;
+    // }
+
+
+    if (searchParams.category) {
+        url = `https://dummyjson.com/products/category/${searchParams.category}`;
+    }
+    const products = await fetchProduct(url);
+
+
 
     return (
         <>
@@ -13,7 +38,7 @@ const Server = async ({ searchParams }: { searchParams: any }) => {
 
             <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-3   pb-5   ">
                 {
-                    products.length > 0 && products?.map((prod: Product) => {
+                    products.length > 0 && products?.map((prod: any) => {
                         return <ProductCard key={prod.id} product={prod} />
                     })
                 }

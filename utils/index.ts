@@ -8,6 +8,7 @@ export const fetchProduct = async (searchQuery: string) => {
     `https://dummyjson.com/products/search?q=${searchQuery}&limit=9`,
     {
       cache: "force-cache",
+
       // next:{revalidate:5}
     }
   );

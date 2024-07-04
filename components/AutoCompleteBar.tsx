@@ -79,9 +79,10 @@ const AutoCompleteBar: FC<IProps> = ({ responsiveMode }) => {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
         params.set("q", inputValue);
-        // router.replace(`/server?${params}`);
+        router.replace(`/myserver?${params}`);
+        // router.refresh()
         // window.location.href = `/products/search?${params}`
-        window.location.href = `/server?${params}`
+        // window.location.href = `/server?${params}`
 
 
         setOpenSearchSuggestionPopup(false);
