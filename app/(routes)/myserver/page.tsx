@@ -15,10 +15,10 @@ export default function Page({ params }: { params: any }) {
         <section className=' '>
             <BreadGrum />
 
-            <div className='flex items-center gap-1 py-5'>
+            {/* <div className='flex items-center gap-1 py-5'>
                 <span className='capitalize text-zinc-300 font-bold text-md '>{params.category}</span>
                 <span className='text-zinc-500'>- <CountProduct /> items</span>
-            </div>
+            </div> */}
 
             <div className='flex items-start gap-4    overflow-x-hidden font-semibold' >
 

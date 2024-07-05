@@ -1,36 +1,24 @@
-// import BrandLists from '@/components/BrandLists';
+
 import BrandLists from '@/components/BrandLists';
-import BreadGrum from '@/components/BreadGrum'
+import BreadGrum from '@/components/BreadGrum';
 import CategoriesList from '@/components/CategoriesList';
-import CategoryLists from '@/components/CategoryLists';
 import CountProduct from '@/components/CountProduct';
-import LayoutShiftIcon from '@/components/LayoutShiftIcon';
-// import MyComponent from '@/components/MyComponent.server';
-import PriceRange from '@/components/PriceRange';
-import ProductListWrapper from '@/components/ProductListWrapper';
-import RatingStar from '@/components/RatingStar';
+import ProductCard from '@/components/ProductCard';
 import ResetFilter from '@/components/ResetFilter';
-import Server from '@/components/ServerCom';
 import SortDropDownBox from '@/components/SortDropDownBox';
-import SpainerLoader from '@/components/SpainerLoader';
 import { delay } from '@/utils';
-
 import dynamic from 'next/dynamic';
-import React from 'react'
+import React, { Suspense } from 'react';
 const MyComponent = dynamic(() => import('@/components/MyComponent.server'), { ssr: true });
-const CategoryPage = async ({ params, searchParams }: { params: { category: string }, searchParams: any }) => {
-
-
-
+export default function Page({ params }: { params: any }) {
     return (
         <section className=' '>
-
             <BreadGrum />
 
-            <div className='flex items-center gap-1 py-5'>
+            {/* <div className='flex items-center gap-1 py-5'>
                 <span className='capitalize text-zinc-300 font-bold text-md '>{params.category}</span>
                 <span className='text-zinc-500'>- <CountProduct /> items</span>
-            </div>
+            </div> */}
 
             <div className='flex items-start gap-4    overflow-x-hidden font-semibold' >
 
@@ -40,9 +28,10 @@ const CategoryPage = async ({ params, searchParams }: { params: { category: stri
                         <ResetFilter />
                     </header>
 
+                    <BrandLists />
                     <CategoriesList />
-                    <RatingStar />
-                    <PriceRange />
+                    {/* <RatingStar />
+                <PriceRange /> */}
                 </div>
                 <div className=' 2xl:w-[75%]  w-full  bg-black  rounded-md pb-5 '>
                     <header className="flex items-center justify-between  mt-3">
@@ -53,17 +42,14 @@ const CategoryPage = async ({ params, searchParams }: { params: { category: stri
                             <SortDropDownBox />
                         </div>
                     </header>
-                    {/* <ProductListWrapper /> */}
-                    <Server searchParams={searchParams} />
-                    {/* <MyComponent /> */}
 
-                    {/* <Pagination paginationItems={6} /> */}
+                    <MyComponent />
+
+
                 </div>
 
             </div>
 
         </section>
-    )
+    );
 }
-
-export default CategoryPage
