@@ -5,6 +5,7 @@ import CategoriesList from '@/components/CategoriesList';
 import CategoryLists from '@/components/CategoryLists';
 import CountProduct from '@/components/CountProduct';
 import LayoutShiftIcon from '@/components/LayoutShiftIcon';
+// import MyComponent from '@/components/MyComponent.server';
 import PriceRange from '@/components/PriceRange';
 import ProductListWrapper from '@/components/ProductListWrapper';
 import RatingStar from '@/components/RatingStar';
@@ -16,15 +17,10 @@ import { delay } from '@/utils';
 
 import dynamic from 'next/dynamic';
 import React from 'react'
-
+const MyComponent = dynamic(() => import('@/components/MyComponent.server'), { ssr: true });
 const CategoryPage = async ({ params, searchParams }: { params: { category: string }, searchParams: any }) => {
 
-    // const ProductList = dynamic(() => import('@/components/ProductListWrapper'), {
-    //     loading: () => <SpainerLoader />,
-    // })
-    // const BrandLists = dynamic(() => import('@/components/BrandLists'), {
-    //     loading: () => <SpainerLoader />,
-    // })
+
 
     return (
         <section className=' '>
@@ -59,6 +55,7 @@ const CategoryPage = async ({ params, searchParams }: { params: { category: stri
                     </header>
                     {/* <ProductListWrapper /> */}
                     <Server searchParams={searchParams} />
+                    {/* <MyComponent /> */}
 
                     {/* <Pagination paginationItems={6} /> */}
                 </div>

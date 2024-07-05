@@ -1,64 +1,55 @@
-//@ts-nocheck
-// app/page.js
+
+import BrandLists from '@/components/BrandLists';
+import BreadGrum from '@/components/BreadGrum';
+import CategoriesList from '@/components/CategoriesList';
+import CountProduct from '@/components/CountProduct';
 import ProductCard from '@/components/ProductCard';
+import ResetFilter from '@/components/ResetFilter';
+import SortDropDownBox from '@/components/SortDropDownBox';
 import { delay } from '@/utils';
+import dynamic from 'next/dynamic';
 import React, { Suspense } from 'react';
-
-async function fetchData(q) {
-    const response = await fetch(`https://dummyjson.com/products/search?q=${q || ""}`);
-    if (!response.ok) {
-        throw new Error('Network response was not ok');
-    }
-    let data = await response.json();
-
-
-    return data.products
-}
-
-async function DataComponent({ q }) {
-
-    const products = await fetchData(q);
-
-
-
-
+const MyComponent = dynamic(() => import('@/components/MyComponent.server'), { ssr: true });
+export default function Page({ params }: { params: any }) {
     return (
+        <section className=' '>
+            <BreadGrum />
 
-        <>
-            <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-3   pb-5   ">
-                {
-                    products.length > 0 && products?.map((prod: any) => {
-                        return <ProductCard key={prod.id} product={prod} />
-                    })
-                }
+            <div className='flex items-center gap-1 py-5'>
+                <span className='capitalize text-zinc-300 font-bold text-md '>{params.category}</span>
+                <span className='text-zinc-500'>- <CountProduct /> items</span>
             </div>
-            {
-                products.length === 0 &&
-                <div className='  flex items-center justify-center  '>
-                    <h1 className='font-bold text-xl capitalize text-zinc-400'>No Product Found</h1>
+
+            <div className='flex items-start gap-4    overflow-x-hidden font-semibold' >
+
+                <div className=' 2xl:w-[25%] md:w-[30%] lg:block hidden bg-black rounded-md pt-4'>
+                    <header className='flex items-center justify-between px-4 '>
+                        <h1 className='text-zinc-800 dark:text-white font-semibold'>Filters</h1>
+                        <ResetFilter />
+                    </header>
+
+                    <BrandLists />
+                    <CategoriesList />
+                    {/* <RatingStar />
+                <PriceRange /> */}
                 </div>
-            }
+                <div className=' 2xl:w-[75%]  w-full  bg-black  rounded-md pb-5 '>
+                    <header className="flex items-center justify-between  mt-3">
+
+                        <div></div>
+                        <div className='flex items-center justify-between '>
+
+                            <SortDropDownBox />
+                        </div>
+                    </header>
+
+                    <MyComponent />
 
 
-        </>
-    );
-}
+                </div>
 
-function LoadingComponent() {
-    return <div>Loading...</div>;
-}
+            </div>
 
-function ErrorComponent({ error }) {
-    return <div>Error: {error.message}</div>;
-}
-
-export default function Page({ searchParams }) {
-    return (
-        <div className='text-white'>
-            <h1>Welcome to Next.js 14 with App Router</h1>
-            <Suspense fallback={<LoadingComponent />}>
-                <DataComponent q={searchParams.q} />
-            </Suspense>
-        </div>
+        </section>
     );
 }

@@ -12,13 +12,22 @@ export default function MyComponent() {
 
     const searchParams = useSearchParams();
     const q = searchParams.get('q');
+    let url = `https://dummyjson.com/products/search?q=${searchParams.get("q") || ""}&limit=9`;
 
+    // if (searchParams.q) {
+    //     url = `https://dummyjson.com/products/search?q=${searchParams.q}&limit=9`;
+    // }
+
+
+    if (searchParams.get("category")) {
+        url = `https://dummyjson.com/products/category/${searchParams.get("category")}`;
+    }
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const response = await fetch(`https://dummyjson.com/products/search?q=${q || ""}`, {
+                const response = await fetch(url, {
                     cache: "force-cache",
                     priority: "high",
 
@@ -36,7 +45,7 @@ export default function MyComponent() {
         };
 
         fetchData();
-    }, [q]);
+    }, [searchParams.toString()]);
 
     if (loading) {
         return <div className="grid grid-flow-row gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 pt-3   pb-5   ">
@@ -52,7 +61,7 @@ export default function MyComponent() {
         return <div className='text-white'>Error: {error.message}</div>;
     }
 
-    console.log("gsfgg");
+
 
 
     return (

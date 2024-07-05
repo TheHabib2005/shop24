@@ -41,7 +41,7 @@ const SortDropDownBox = () => {
         }
     };
 
-    let body = useRef(document.querySelector("body"));
+    let body = useRef(window.document.querySelector("body"));
 
     console.log(body);
 

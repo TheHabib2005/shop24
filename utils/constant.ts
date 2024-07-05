@@ -50,28 +50,28 @@ export const productCategories = [
   },
   {
     id: Math.round(Math.random() * 200),
-    name: "t-shirt",
+    name: "tablets",
     isChecked: false,
   },
   {
     id: Math.round(Math.random() * 200),
-    name: "watch",
+    name: "smartphones",
     isChecked: false,
   },
 
   {
     id: Math.round(Math.random() * 200),
-    name: "sunglasses",
+    name: "sports-accessories",
     isChecked: false,
   },
   {
     id: Math.round(Math.random() * 200),
-    name: "skincare product",
+    name: "motorcycle",
     isChecked: false,
   },
   {
     id: Math.round(Math.random() * 200),
-    name: "sliders",
+    name: "mens-watches",
     isChecked: false,
   },
 ];
